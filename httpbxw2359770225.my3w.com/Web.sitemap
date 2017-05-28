@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="Index.aspx" title="首页"  description="首页">
+              <siteMapNode url="Login/Login_Home.aspx" title="个人中心"  description="个人中心">
+                      
+                          <siteMapNode url="" title="用户模块"  description="用户模块" >
+                                      <siteMapNode url="Login/Login_Info.aspx" title="个人信息页面"  description="个人信息页面" />
+                                      <siteMapNode url="Login/Login_ChangePW.aspx" title="修改密码"  description="修改密码" />
+                          </siteMapNode>
+        
+                          <siteMapNode url="" title="管理员模块"  description="管理员模块" >
+                                      <siteMapNode url="Login/Login_New.aspx" title="创建新用户"  description="创建新用户" />
+                                      <siteMapNode url="Login/Login_Rank.aspx" title="权限管理"  description="权限管理" >
+                                                 <siteMapNode url="Login/RankDetail.aspx" title="用户详细信息查看"  description="用户详细信息查看" />
+                                      </siteMapNode>
+                          </siteMapNode>
+              </siteMapNode>
+              <siteMapNode url="News/News_index.aspx" title="新闻中心"  description="新闻中心">
+                          <siteMapNode url="News/News_Home.aspx" title="新闻管理"  description="新闻管理" >
+                                     <siteMapNode url="News/News_Edit.aspx" title="修改新闻"  description="修改新闻" />
+                          </siteMapNode>
+                          <siteMapNode url="News/new.aspx" title="新建新闻"  description="新建新闻" />
+              </siteMapNode>
+              
+    
+    
+    
+    
+    
+              <siteMapNode url="News/News_NewsDetails.aspx" title="新闻公告"  description="新闻公告" />
+              <siteMapNode url="Login/LostPW.aspx" title="找回密码"  description="找回密码" />
+  </siteMapNode>
+</siteMap>

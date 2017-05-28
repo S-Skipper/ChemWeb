@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript">
+        $(function () {
+            $('#form').submit(function (e) {
+                e.preventDefault();
+                var temp = {};
+                $($('#form').serializeArray()).each(function (inx, ele) {
+                    temp[ele.name] = ele.value;
+                });
+                    data = {
+                    type: temp.type,
+                    id: temp.id,
+                    pw: temp.pw
+                };
+                switch (data.type) {
+                    case 'GetDrug':
+                    case 'GetDrugDetail':
+                    case 'Drug_Delete':
+                    case 'GetDrugLoc':
+                        data.drug = temp.drug;
+                        break;
+                    case 'GetDrugLocDetail':
+                        data.loc = temp.loc;
+                        break;
+                    case 'Drug_DeleteLoc':
+                        data.loc = temp.loc;
+                        break;
+                    case 'GetDrugInOutByName':
+                        data.drug = temp.drug;
+                        data.from = temp.from;
+                        data.to = temp.to;
+                        break;
+                    case 'GetDrugMix':
+                    case 'GetDrugMixByName':
+                    case 'GetDrugMix_Struct':
+                    case 'DrugMix_Delete':
+                        data.mix = temp.mix;
+                        break;
+                    case 'Drug_Insert_Update':
+                        data.drug = temp.drug;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'Drug_Insert_UpdateLoc':
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'DrugMix_Insert_Update':
+                        data.mix = temp.mix;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'DrugMixDrug_Insert_Update':
+                        data.mix = temp.mix;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    default:
+                        return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    crossDomain: true,
+                    url: '../Ashx/DrugHandler.ashx',
+                    data: 'json=' + escape(JSON.stringify(data)),
+                    dataType: 'json',
+                    success: sFun
+                });
+            });
+
+            function sFun(result) {
+                $('#send').html(JSON.stringify(data));
+                $('#recv').html(JSON.stringify(result));
+            }
+
+            $('#type').change(function () {
+                $('textarea').prop('disabled', true).html('');
+                switch ($(this).val()) {
+                    case 'Drug_Insert_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"drug_old":"12","drug":"12","drug_another_name":"c","drug_Englishname":"b","fen_zi_shi":"c","fen_zi_liang":"1","CAS":"1","details":"3","dangerous":"一般药品","standard":"ml","people":"1111"}')
+                        break;
+                    case 'Drug_Insert_UpdateLoc':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"loc":"-1","drug":"SDS","position":"1_H1","counting":"2","remain":"0","each":"500","people":"1233"}')
+                        break;
+                    case 'DrugMix_Insert_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"mix_old":"试剂1","mix":"试剂1","attention":"试剂11","standard":"ml"}')
+                        break;
+                    case 'DrugMixDrug_Insert_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(1).prop('disabled', false);
+                        $('textarea').eq(0).html('{"mix":"试剂1","drug":[{"drug":"70%乙醇","num":"4","standard":"g"},{"drug":"98%己醇","num":"5","standard":"g"}],"mix_add":[{"mix":"1%反式偶氮苯溶液","num":"5"}]}')
+                        
+                        
+                    default:
+                        break;
+                }
+            });
+        });
+    </script>
+    <title>逗比咸鱼</title>
+</head>
+
+<body>
+    <div class="well well-lg">
+        <form id="form" class="center-block" style="max-width: 1200px">
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">请求类型</div>
+                        <select name="type" id="type" class="form-control">
+                            <option value="GetDrug" selected="selected">GetDrug</option>
+                            <option value="GetDrugDetail">GetDrugDetail</option>
+                            <option value="Drug_Insert_Update">Drug_Insert_Update</option>
+                            <option value="Drug_Delete">Drug_Delete</option>
+                            <option value="GetDrugLoc">GetDrugLoc</option>
+                            <option value="GetDrugLocDetail">GetDrugLocDetail</option>
+                            <option value="Drug_Insert_UpdateLoc">Drug_Insert_UpdateLoc</option>
+                            <option value="Drug_DeleteLoc">Drug_DeleteLoc</option>
+                            <option value="GetDrugInOutByName">GetDrugInOutByName</option>
+                            <option value="GetDrugMix">GetDrugMix</option>
+                            <option value="GetDrugMixByName">GetDrugMixByName</option>
+                            <option value="GetDrugMix_Struct">GetDrugMix_Struct</option>
+                            <option value="DrugMix_Insert_Update">DrugMix_Insert_Update</option>
+                            <option value="DrugMixDrug_Insert_Update">DrugMixDrug_Insert_Update</option>
+                            <option value="DrugMix_Delete">DrugMix_Delete</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">用户名</div>
+                        <input type="text" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">密码</div>
+                        <input type="text" class="form-control" name="pw">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">药品名</div>
+                        <input type="text" class="form-control" name="drug">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">试剂名</div>
+                        <input type="text" class="form-control" name="mix">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">位置</div>
+                        <input type="text" class="form-control" name="loc">
+                    </div>
+                </div>
+            
+                
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">起始时间</div>
+                        <input type="text" class="form-control" name="from">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">终止时间</div>
+                        <input type="text" class="form-control" name="to">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-horizontal form-group">
+                <label class="col-sm-2 control-label">JSON输入</label>
+                <div class="col-sm-10"><textarea name="json" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea></div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>发送格式</strong></h4>
+                    <textarea id="send" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>接收格式</strong></h4>
+                    <textarea id="recv" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-block btn-info">确认提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

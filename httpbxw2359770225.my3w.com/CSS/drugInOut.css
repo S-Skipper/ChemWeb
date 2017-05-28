@@ -1,0 +1,191 @@
+#keyTime{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10%;
+    height: 40px;
+}
+#keyTime label{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    flex: 0 0 85%;
+    -webkit-flex: 0 0 85%;
+}
+#keyTime button{
+    letter-spacing: 0.5em;
+    flex: 0 0 15%;
+    -webkit-flex: 0 0 15%;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 1px solid #3597dc;
+    background-color: #3597dc;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    border-radius: 0 15px 15px 0;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#keyTime button:hover{
+    cursor: pointer;
+    background-color: #20aadc;
+}
+#keyTime label input, #KeyTime label select{
+    flex: 1 0 27%;
+    -webkit-flex: 1 0 27%;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    border-right: 0;
+    background-color: rgba(210, 210, 210, 0.1);
+    outline: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+#keyTime label select{
+    flex: 1 0 19%;
+    -webkit-flex: 1 0 19%;
+}
+#keyTime #startTime, #keyTime #endTime{
+    padding: 0;
+    padding-left: 5px;
+    font-size: 13px;
+    position: relative;
+}
+#startTime:before, #endTime:before{
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    letter-spacing: 0.5em;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+#startTime:before{
+    content: "起始时间";
+}
+#endTime:before{
+    content: "终止时间";
+}
+#keyword{
+    border-radius:15px 0 0 15px;
+}
+#main table{
+    text-align: left;
+    margin: 20px auto;
+    width: 90%;
+    border-collapse: collapse;
+    -webkit-transition: width 0.3s;
+    -o-transition: width 0.3s;
+    transition: width 0.3s;
+}
+#main td, #main th{
+    border: 1px solid #EEE;
+}
+#main thead{
+    font-size: 1.2em;
+    background-color: #FAFAAF;
+}
+#main table td, #main table th{
+    padding: 5px 10px;
+}
+#main table tr td:first-child, #main table tr td:last-child,
+#main table tr th:first-child, #main table tr th:last-child{
+    width: 25%;
+}
+#main table tbody tr{
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#main table tbody tr:nth-child(2n+1){
+    background-color: #F6F5FA;
+}
+#main table tbody tr:hover{
+    cursor: pointer;
+    background-color: #EFEFF0;
+}
+#page{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 5%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#page li{
+    text-align: center;
+    width: 5%;
+    margin: 0;
+    padding: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    border-left: 0;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+}
+#page li:hover{
+    cursor: pointer;
+    background-color: #EEE;
+}
+#page li:first-child{
+    border-left: 1px solid #CCC;
+}
+#page li.active{
+    background-color: #3597dc;
+    cursor: default;
+    color: white;
+}
+/* responsive */
+@media all and (max-width: 768px){
+    #keyTime{
+        height: 80px;
+    }
+    #keyTime label{
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+    }
+    #keyTime label input, #KyeTime label select{
+        flex: 1 0 100%;
+        font-size: 16px;
+        height: 20px;
+    }
+    #startTime:before{
+        content: "";
+    }
+    #endTime:before{
+        content: "";
+    }
+    #keyTime #keyword{
+        border-radius: 15px 0 0 0;
+    }
+    #keyTime #startTime, #keyTime #endTime, #keyTime label select{
+        border-top: 0;
+    }
+    #keyTime #endTime{
+        border-radius:  0 0 0 15px;
+    }
+    #main table{
+        width: 100%;
+    }
+    #page{
+        justify-content: center;
+        padding-right: 0;
+    }
+    #page li{
+        width: 11%;
+    }
+}

@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript">
+        $(function () {
+            $('#form').submit(function (e) {
+                e.preventDefault();
+                var temp = {};
+                $($('#form').serializeArray()).each(function (inx, ele) {
+                    temp[ele.name] = ele.value;
+                });
+                data = {
+                    type: temp.type,
+                    id: temp.id,
+                    pw: temp.pw
+                };
+                switch (data.type) {
+                    case 'GetExperience':
+                    case 'FindExperience':
+                    case 'GetExp_AllDrug':
+                    case 'GetExp_Drug':
+                    case 'GetExp_Mix':
+                    case 'GetExp_Room':
+                    case 'Exper_Delete':
+                    case 'Exper_LoginByName':
+                        data.experment_name = temp.experment_name;
+                        break;
+                    case 'Exper_Insert_Update':
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'GetRoom':
+                    case 'Exper_LoginByID':
+                        break;
+                    case 'Room_Insert_Update':
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'Room_Delete':
+                    case 'GetRoom_Exper':
+                        data.room_name = temp.room_name;
+                        break;
+                    
+                    case 'Exper_LoginInsert_Update':
+                       
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    default:
+                        return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    crossDomain: true,
+                    url: '../Ashx/ExperHandler.ashx',
+                    data: 'json=' + escape(JSON.stringify(data)),
+                    dataType: 'json',
+                    success: sFun
+                });
+            });
+
+            function sFun(result) {
+                $('#send').html(JSON.stringify(data));
+                $('#recv').html(JSON.stringify(result));
+            }
+
+            $('#type').change(function () {
+                $('textarea').prop('disabled', true).html('');
+                switch ($(this).val()) {
+                    case 'Exper_Insert_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"experment_name":"实验1","experment_name_old":"-1","detail":"111","error":"1.5","drug":[{"drug":"70%乙醇","num":"4","standard":"g"},{"drug":"98%己醇","num":"5","standard":"g"}],"mix_add":[{"mix":"1%反式偶氮苯溶液","standard":"ml","num":"5"}],"room":[{"room_name":"502"}]}')
+                        break;
+                    case 'Room_Insert_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"room_name_old":"-1","room_name":"503","detail":"11"}')
+                        break;
+                    case 'Exper_LoginInsert_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"experment_name":"实验1","people":[{"ID":"1111","name":"1111","isAdd":"true"},{"ID":"2222","name":"2222","isAdd":"true"}]}')
+                        break;
+                   
+
+                    default:
+                        break;
+                }
+            });
+        });
+    </script>
+    <title>逗比咸鱼</title>
+</head>
+
+<body>
+    <div class="well well-lg">
+        <form id="form" class="center-block" style="max-width: 1200px">
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">请求类型</div>
+                        <select name="type" id="type" class="form-control">
+                            <option value="GetExperience" selected="selected">GetExperience</option>
+                            <option value="FindExperience">FindExperience</option>
+                            <option value="GetExp_AllDrug">GetExp_AllDrug</option>
+                            <option value="GetExp_Drug">GetExp_Drug</option>
+                            <option value="GetExp_Mix">GetExp_Mix</option>
+                            <option value="GetExp_Room">GetExp_Room</option>
+                            <option value="Exper_Insert_Update">Exper_Insert_Update</option>
+                            <option value="Exper_Delete">Exper_Delete</option>
+                            <option value="GetRoom">GetRoom</option>
+                            <option value="GetRoom_Exper">GetRoom_Exper</option>
+                            <option value="Room_Insert_Update">Room_Insert_Update</option>
+                            <option value="Room_Delete">Room_Delete</option>
+                            <option value="Exper_LoginByID">Exper_LoginByID</option>
+                            <option value="Exper_LoginByName">Exper_LoginByName</option>
+                            <option value="Exper_LoginInsert_Update">Exper_LoginInsert_Update</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">用户名</div>
+                        <input type="text" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">密码</div>
+                        <input type="text" class="form-control" name="pw">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">实验名</div>
+                        <input type="text" class="form-control" name="experment_name">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">房间名</div>
+                        <input type="text" class="form-control" name="room_name">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon"> </div>
+                        <input type="text" class="form-control" name="loc">
+                    </div>
+                </div>
+
+
+            </div>
+            
+            <div class="row form-horizontal form-group">
+                <label class="col-sm-2 control-label">JSON输入</label>
+                <div class="col-sm-10"><textarea name="json" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea></div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>发送格式</strong></h4>
+                    <textarea id="send" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>接收格式</strong></h4>
+                    <textarea id="recv" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-block btn-info">确认提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

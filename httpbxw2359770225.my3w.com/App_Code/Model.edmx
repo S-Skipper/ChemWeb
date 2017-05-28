@@ -1,0 +1,1825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="chem_databaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Class_Course”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Class_Course">
+          <Key>
+            <PropertyRef Name="class_name" />
+            <PropertyRef Name="course" />
+          </Key>
+          <Property Name="class_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="course" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="people" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Class_Exper”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Class_Exper">
+          <Key>
+            <PropertyRef Name="class_name" />
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="room_name" />
+          </Key>
+          <Property Name="class_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="experment_name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="room_name" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class_Information">
+          <Key>
+            <PropertyRef Name="class_name" />
+          </Key>
+          <Property Name="class_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="detail" Type="nchar" MaxLength="400" />
+          <Property Name="num" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Course_Exper”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Course_Exper">
+          <Key>
+            <PropertyRef Name="course" />
+            <PropertyRef Name="experment_name" />
+          </Key>
+          <Property Name="course" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="experment_name" Type="nchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course_Information">
+          <Key>
+            <PropertyRef Name="course" />
+          </Key>
+          <Property Name="course" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="detail" Type="nchar" MaxLength="400" />
+          <Property Name="faculty" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Course_Login”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Course_Login">
+          <Key>
+            <PropertyRef Name="course" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="course" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="ID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="isAdd" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Drug_In_Out”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Drug_In_Out">
+          <Key>
+            <PropertyRef Name="drug_name" />
+            <PropertyRef Name="change" />
+            <PropertyRef Name="people" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="drug_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="change" Type="float" Nullable="false" />
+          <Property Name="people" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="standard" Type="nchar" MaxLength="20" />
+          <Property Name="type" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="position" Type="nchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Drug_Information">
+          <Key>
+            <PropertyRef Name="drug_name" />
+          </Key>
+          <Property Name="drug_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="drug_another_name" Type="nchar" MaxLength="200" />
+          <Property Name="drug_Englishname" Type="nchar" MaxLength="40" />
+          <Property Name="fen_zi_shi" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="fen_zi_liang" Type="nchar" MaxLength="40" />
+          <Property Name="CAS" Type="nchar" MaxLength="30" />
+          <Property Name="details" Type="nchar" MaxLength="100" />
+          <Property Name="dangerous" Type="nchar" MaxLength="10" />
+          <Property Name="counting" Type="float" Nullable="false" />
+          <Property Name="standard" Type="nchar" MaxLength="20" />
+          <Property Name="people" Type="nchar" MaxLength="20" />
+          <Property Name="edit_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drug_Loc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="drug_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="position" Type="nchar" MaxLength="40" />
+          <Property Name="counting" Type="int" Nullable="false" />
+          <Property Name="remain" Type="float" Nullable="false" />
+          <Property Name="each" Type="float" />
+          <Property Name="standard" Type="nchar" MaxLength="20" />
+          <Property Name="people" Type="nchar" MaxLength="20" />
+          <Property Name="edit_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drug_Mix">
+          <Key>
+            <PropertyRef Name="drug_mix" />
+          </Key>
+          <Property Name="drug_mix" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="attention" Type="nchar" MaxLength="400" />
+          <Property Name="standard" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Drug_MixDrug”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Drug_MixDrug">
+          <Key>
+            <PropertyRef Name="drug_mix" />
+            <PropertyRef Name="drug_name" />
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Name="drug_mix" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="drug_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="num" Type="float" Nullable="false" />
+          <Property Name="standard" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Equipment_Information">
+          <Key>
+            <PropertyRef Name="equip_name" />
+          </Key>
+          <Property Name="equip_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="model" Type="nchar" MaxLength="40" />
+          <Property Name="factory" Type="nchar" MaxLength="40" />
+          <Property Name="detail" Type="nchar" MaxLength="400" />
+          <Property Name="price" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Equipment_Loc">
+          <Key>
+            <PropertyRef Name="fixed_assets_NO" />
+          </Key>
+          <Property Name="equip_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="fixed_assets_NO" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="factory_NO" Type="nchar" MaxLength="40" />
+          <Property Name="time_buying" Type="nchar" MaxLength="40" />
+          <Property Name="people" Type="nchar" MaxLength="40" />
+          <Property Name="position" Type="nchar" MaxLength="40" />
+          <Property Name="state" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="state_explane" Type="nchar" MaxLength="40" />
+          <Property Name="edit_time" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Experment_Drug”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Experment_Drug">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="drug_name" />
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Name="experment_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="drug_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="num" Type="float" Nullable="false" />
+          <Property Name="standard" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Experment_Information">
+          <Key>
+            <PropertyRef Name="experment_name" />
+          </Key>
+          <Property Name="experment_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="detail" Type="nchar" MaxLength="100" />
+          <Property Name="error" Type="float" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Experment_Login”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Experment_Login">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="experment_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="ID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="isAdd" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Experment_MixDrug”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Experment_MixDrug">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="drug_mix" />
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Name="experment_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="drug_mix" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="num" Type="float" Nullable="false" />
+          <Property Name="standard" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.Experment_Room”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Experment_Room">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="room_name" />
+          </Key>
+          <Property Name="experment_name" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="room_name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Detail" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“chem_database.dbo.ImageCheck”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="ImageCheck">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="str" Type="nchar" MaxLength="10" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="login_information">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="creat_time" Type="datetime" />
+          <Property Name="idebtity" Type="nchar" MaxLength="10" />
+          <Property Name="email" Type="nchar" MaxLength="40" />
+          <Property Name="QQ" Type="nchar" MaxLength="20" />
+          <Property Name="phonenumber_long" Type="nchar" MaxLength="20" />
+          <Property Name="phonenumber_short" Type="nchar" MaxLength="20" />
+          <Property Name="address" Type="nchar" MaxLength="80" />
+          <Property Name="last_time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Login_News">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+          </Key>
+          <Property Name="ArticleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Content_1" Type="nvarchar" MaxLength="3000" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="Member_Name" Type="nchar" MaxLength="20" />
+          <Property Name="type" Type="int" />
+          <Property Name="infor" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="login_rank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="PW" Type="nchar" MaxLength="18" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="question" Type="nchar" MaxLength="40" />
+          <Property Name="answer" Type="nchar" MaxLength="40" />
+          <Property Name="rank_control" Type="nchar" MaxLength="20" />
+          <Property Name="rank_news" Type="nchar" MaxLength="20" />
+          <Property Name="rank_drug" Type="nchar" MaxLength="20" />
+          <Property Name="rank_equipment" Type="nchar" MaxLength="20" />
+          <Property Name="rank_experment" Type="nchar" MaxLength="20" />
+          <Property Name="rank_course" Type="nchar" MaxLength="20" />
+          <Property Name="rank_class" Type="nchar" MaxLength="20" />
+          <Property Name="rank_student" Type="nchar" MaxLength="20" />
+          <Property Name="rank_open" Type="nchar" MaxLength="20" />
+          <Property Name="token" Type="nchar" MaxLength="20" />
+          <Property Name="token_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="room_name" />
+          </Key>
+          <Property Name="room_name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="detail" Type="nchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="Student_Freetime">
+          <Key>
+            <PropertyRef Name="freetime_id" />
+          </Key>
+          <Property Name="freetime_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="time_type" Type="int" />
+        </EntityType>
+        <EntityType Name="Student_Signtime">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="date_time" Type="datetime" />
+          <Property Name="state" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Student_Worktime">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="time_type" Type="int" />
+          <Property Name="date_time" Type="date" />
+        </EntityType>
+        <Association Name="FK_Course_Exper_Course_Information">
+          <End Role="Course_Information" Type="Self.Course_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Course_Exper" Type="Self.Course_Exper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Information">
+              <PropertyRef Name="course" />
+            </Principal>
+            <Dependent Role="Course_Exper">
+              <PropertyRef Name="course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Exper_Experment_Information">
+          <End Role="Experment_Information" Type="Self.Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Course_Exper" Type="Self.Course_Exper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Course_Exper">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Login_Course_Information">
+          <End Role="Course_Information" Type="Self.Course_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Course_Login" Type="Self.Course_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Information">
+              <PropertyRef Name="course" />
+            </Principal>
+            <Dependent Role="Course_Login">
+              <PropertyRef Name="course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Login_login_rank">
+          <End Role="login_rank" Type="Self.login_rank" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Course_Login" Type="Self.Course_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course_Login">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_In_Out_Drug_Information">
+          <End Role="Drug_Information" Type="Self.Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Drug_In_Out" Type="Self.Drug_In_Out" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Drug_In_Out">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Loc_Drug_Information">
+          <End Role="Drug_Information" Type="Self.Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Drug_Loc" Type="Self.Drug_Loc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Drug_Loc">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_MixDrug_Drug_Information">
+          <End Role="Drug_Information" Type="Self.Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Drug_MixDrug" Type="Self.Drug_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Drug_MixDrug">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_MixDrug_Drug_Mix">
+          <End Role="Drug_Mix" Type="Self.Drug_Mix" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Drug_MixDrug" Type="Self.Drug_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Mix">
+              <PropertyRef Name="drug_mix" />
+            </Principal>
+            <Dependent Role="Drug_MixDrug">
+              <PropertyRef Name="drug_mix" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Loc_Equipment_Information">
+          <End Role="Equipment_Information" Type="Self.Equipment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Equipment_Loc" Type="Self.Equipment_Loc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment_Information">
+              <PropertyRef Name="equip_name" />
+            </Principal>
+            <Dependent Role="Equipment_Loc">
+              <PropertyRef Name="equip_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Drug_Drug_Information">
+          <End Role="Drug_Information" Type="Self.Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_Drug" Type="Self.Experment_Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Experment_Drug">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Drug_Experment_Information">
+          <End Role="Experment_Information" Type="Self.Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_Drug" Type="Self.Experment_Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_Drug">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Login_Experment_Information">
+          <End Role="Experment_Information" Type="Self.Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_Login" Type="Self.Experment_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_Login">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Login_login_rank">
+          <End Role="login_rank" Type="Self.login_rank" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_Login" Type="Self.Experment_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Experment_Login">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_MixDrug_Drug_Mix">
+          <End Role="Drug_Mix" Type="Self.Drug_Mix" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_MixDrug" Type="Self.Experment_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Mix">
+              <PropertyRef Name="drug_mix" />
+            </Principal>
+            <Dependent Role="Experment_MixDrug">
+              <PropertyRef Name="drug_mix" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_MixDrug_Experment_Information">
+          <End Role="Experment_Information" Type="Self.Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_MixDrug" Type="Self.Experment_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_MixDrug">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Room_Experment_Information">
+          <End Role="Experment_Information" Type="Self.Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_Room" Type="Self.Experment_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_Room">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Room_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Experment_Room" Type="Self.Experment_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="room_name" />
+            </Principal>
+            <Dependent Role="Experment_Room">
+              <PropertyRef Name="room_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_login_information_login_rank">
+          <End Role="login_rank" Type="Self.login_rank" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="login_information" Type="Self.login_information" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="login_information">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Freetime_Student_Infor">
+          <End Role="login_rank" Type="Self.login_rank" Multiplicity="1" />
+          <End Role="Student_Freetime" Type="Self.Student_Freetime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Freetime">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Signtime_Student_Infor">
+          <End Role="login_rank" Type="Self.login_rank" Multiplicity="1" />
+          <End Role="Student_Signtime" Type="Self.Student_Signtime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Signtime">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Worktime_Student_Infor">
+          <End Role="login_rank" Type="Self.login_rank" Multiplicity="1" />
+          <End Role="Student_Worktime" Type="Self.Student_Worktime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Worktime">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="chem_databaseModelStoreContainer">
+          <EntitySet Name="Class_Information" EntityType="Self.Class_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course_Information" EntityType="Self.Course_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drug_Information" EntityType="Self.Drug_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drug_Loc" EntityType="Self.Drug_Loc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drug_Mix" EntityType="Self.Drug_Mix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment_Information" EntityType="Self.Equipment_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment_Loc" EntityType="Self.Equipment_Loc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Experment_Information" EntityType="Self.Experment_Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login_information" EntityType="Self.login_information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login_News" EntityType="Self.Login_News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="login_rank" EntityType="Self.login_rank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Freetime" EntityType="Self.Student_Freetime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Signtime" EntityType="Self.Student_Signtime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Worktime" EntityType="Self.Student_Worktime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class_Course" EntityType="Self.Class_Course" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Class_Course].[class_name] AS [class_name], 
+[Class_Course].[course] AS [course], 
+[Class_Course].[people] AS [people]
+FROM [dbo].[Class_Course] AS [Class_Course]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Class_Exper" EntityType="Self.Class_Exper" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Class_Exper].[class_name] AS [class_name], 
+[Class_Exper].[experment_name] AS [experment_name], 
+[Class_Exper].[room_name] AS [room_name]
+FROM [dbo].[Class_Exper] AS [Class_Exper]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Course_Exper" EntityType="Self.Course_Exper" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Course_Exper].[course] AS [course], 
+[Course_Exper].[experment_name] AS [experment_name]
+FROM [dbo].[Course_Exper] AS [Course_Exper]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Course_Login" EntityType="Self.Course_Login" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Course_Login].[course] AS [course], 
+[Course_Login].[ID] AS [ID], 
+[Course_Login].[name] AS [name], 
+[Course_Login].[isAdd] AS [isAdd]
+FROM [dbo].[Course_Login] AS [Course_Login]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Drug_In_Out" EntityType="Self.Drug_In_Out" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Drug_In_Out].[drug_name] AS [drug_name], 
+[Drug_In_Out].[change] AS [change], 
+[Drug_In_Out].[people] AS [people], 
+[Drug_In_Out].[standard] AS [standard], 
+[Drug_In_Out].[type] AS [type], 
+[Drug_In_Out].[time] AS [time], 
+[Drug_In_Out].[position] AS [position]
+FROM [dbo].[Drug_In_Out] AS [Drug_In_Out]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Drug_MixDrug" EntityType="Self.Drug_MixDrug" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Drug_MixDrug].[drug_mix] AS [drug_mix], 
+[Drug_MixDrug].[drug_name] AS [drug_name], 
+[Drug_MixDrug].[num] AS [num], 
+[Drug_MixDrug].[standard] AS [standard]
+FROM [dbo].[Drug_MixDrug] AS [Drug_MixDrug]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Experment_Drug" EntityType="Self.Experment_Drug" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Experment_Drug].[experment_name] AS [experment_name], 
+[Experment_Drug].[drug_name] AS [drug_name], 
+[Experment_Drug].[num] AS [num], 
+[Experment_Drug].[standard] AS [standard]
+FROM [dbo].[Experment_Drug] AS [Experment_Drug]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Experment_Login" EntityType="Self.Experment_Login" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Experment_Login].[experment_name] AS [experment_name], 
+[Experment_Login].[ID] AS [ID], 
+[Experment_Login].[name] AS [name], 
+[Experment_Login].[isAdd] AS [isAdd]
+FROM [dbo].[Experment_Login] AS [Experment_Login]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Experment_MixDrug" EntityType="Self.Experment_MixDrug" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Experment_MixDrug].[experment_name] AS [experment_name], 
+[Experment_MixDrug].[drug_mix] AS [drug_mix], 
+[Experment_MixDrug].[num] AS [num], 
+[Experment_MixDrug].[standard] AS [standard]
+FROM [dbo].[Experment_MixDrug] AS [Experment_MixDrug]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Experment_Room" EntityType="Self.Experment_Room" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Experment_Room].[experment_name] AS [experment_name], 
+[Experment_Room].[room_name] AS [room_name], 
+[Experment_Room].[Detail] AS [Detail]
+FROM [dbo].[Experment_Room] AS [Experment_Room]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ImageCheck" EntityType="Self.ImageCheck" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ImageCheck].[No] AS [No], 
+[ImageCheck].[str] AS [str], 
+[ImageCheck].[date] AS [date]
+FROM [dbo].[ImageCheck] AS [ImageCheck]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Course_Exper_Course_Information" Association="Self.FK_Course_Exper_Course_Information">
+            <End Role="Course_Information" EntitySet="Course_Information" />
+            <End Role="Course_Exper" EntitySet="Course_Exper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Exper_Experment_Information" Association="Self.FK_Course_Exper_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Course_Exper" EntitySet="Course_Exper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Login_Course_Information" Association="Self.FK_Course_Login_Course_Information">
+            <End Role="Course_Information" EntitySet="Course_Information" />
+            <End Role="Course_Login" EntitySet="Course_Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Login_login_rank" Association="Self.FK_Course_Login_login_rank">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Course_Login" EntitySet="Course_Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_In_Out_Drug_Information" Association="Self.FK_Drug_In_Out_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Drug_In_Out" EntitySet="Drug_In_Out" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Loc_Drug_Information" Association="Self.FK_Drug_Loc_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Drug_Loc" EntitySet="Drug_Loc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_MixDrug_Drug_Information" Association="Self.FK_Drug_MixDrug_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Drug_MixDrug" EntitySet="Drug_MixDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_MixDrug_Drug_Mix" Association="Self.FK_Drug_MixDrug_Drug_Mix">
+            <End Role="Drug_Mix" EntitySet="Drug_Mix" />
+            <End Role="Drug_MixDrug" EntitySet="Drug_MixDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Loc_Equipment_Information" Association="Self.FK_Equipment_Loc_Equipment_Information">
+            <End Role="Equipment_Information" EntitySet="Equipment_Information" />
+            <End Role="Equipment_Loc" EntitySet="Equipment_Loc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Drug_Drug_Information" Association="Self.FK_Experment_Drug_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Experment_Drug" EntitySet="Experment_Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Drug_Experment_Information" Association="Self.FK_Experment_Drug_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_Drug" EntitySet="Experment_Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Login_Experment_Information" Association="Self.FK_Experment_Login_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_Login" EntitySet="Experment_Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Login_login_rank" Association="Self.FK_Experment_Login_login_rank">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Experment_Login" EntitySet="Experment_Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_MixDrug_Drug_Mix" Association="Self.FK_Experment_MixDrug_Drug_Mix">
+            <End Role="Drug_Mix" EntitySet="Drug_Mix" />
+            <End Role="Experment_MixDrug" EntitySet="Experment_MixDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_MixDrug_Experment_Information" Association="Self.FK_Experment_MixDrug_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_MixDrug" EntitySet="Experment_MixDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Room_Experment_Information" Association="Self.FK_Experment_Room_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_Room" EntitySet="Experment_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Room_Room" Association="Self.FK_Experment_Room_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Experment_Room" EntitySet="Experment_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_login_information_login_rank" Association="Self.FK_login_information_login_rank">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="login_information" EntitySet="login_information" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Freetime_Student_Infor" Association="Self.FK_Student_Freetime_Student_Infor">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Student_Freetime" EntitySet="Student_Freetime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Signtime_Student_Infor" Association="Self.FK_Student_Signtime_Student_Infor">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Student_Signtime" EntitySet="Student_Signtime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Worktime_Student_Infor" Association="Self.FK_Student_Worktime_Student_Infor">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Student_Worktime" EntitySet="Student_Worktime" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="chem_databaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="Class_Information">
+          <Key>
+            <PropertyRef Name="class_name" />
+          </Key>
+          <Property Name="class_name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="detail" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
+          <Property Name="num" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Course_Information">
+          <Key>
+            <PropertyRef Name="course" />
+          </Key>
+          <Property Name="course" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="detail" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
+          <Property Name="faculty" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Course_Exper" Relationship="Self.FK_Course_Exper_Course_Information" FromRole="Course_Information" ToRole="Course_Exper" />
+          <NavigationProperty Name="Course_Login" Relationship="chem_databaseModel.FK_Course_Login_Course_Information" FromRole="Course_Information" ToRole="Course_Login" />
+        </EntityType>
+        <EntityType Name="Equipment_Information">
+          <Key>
+            <PropertyRef Name="equip_name" />
+          </Key>
+          <Property Name="equip_name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="model" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="factory" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="detail" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
+          <Property Name="price" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Equipment_Loc" Relationship="Self.FK_Equipment_Loc_Equipment_Information" FromRole="Equipment_Information" ToRole="Equipment_Loc" />
+        </EntityType>
+        <EntityType Name="login_information">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="creat_time" Type="DateTime" Precision="3" />
+          <Property Name="idebtity" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="QQ" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="phonenumber_long" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="phonenumber_short" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="80" FixedLength="true" Unicode="true" />
+          <Property Name="last_time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="login_rank" Relationship="Self.FK_login_information_login_rank" FromRole="login_information" ToRole="login_rank" />
+        </EntityType>
+        <EntityType Name="Login_News">
+          <Key>
+            <PropertyRef Name="ArticleID" />
+          </Key>
+          <Property Name="ArticleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Content_1" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="Hits" Type="Int32" />
+          <Property Name="Member_Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="infor" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="login_rank">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PW" Type="String" MaxLength="18" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="question" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="answer" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="rank_control" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_news" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_drug" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_equipment" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_experment" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_course" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_class" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_student" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rank_open" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="login_information" Relationship="Self.FK_login_information_login_rank" FromRole="login_rank" ToRole="login_information" />
+          <NavigationProperty Name="Course_Login" Relationship="chem_databaseModel.FK_Course_Login_login_rank" FromRole="login_rank" ToRole="Course_Login" />
+          <NavigationProperty Name="Experment_Login" Relationship="chem_databaseModel.FK_Experment_Login_login_rank" FromRole="login_rank" ToRole="Experment_Login" />
+          <Property Name="token" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="token_Time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Student_Freetime" Relationship="chem_databaseModel.FK_Student_Freetime_Student_Infor1" FromRole="login_rank" ToRole="Student_Freetime" />
+          <NavigationProperty Name="Student_Signtime" Relationship="chem_databaseModel.FK_Student_Signtime_Student_Infor1" FromRole="login_rank" ToRole="Student_Signtime" />
+          <NavigationProperty Name="Student_Worktime" Relationship="chem_databaseModel.FK_Student_Worktime_Student_Infor1" FromRole="login_rank" ToRole="Student_Worktime" />
+        </EntityType>
+        <EntityType Name="Class_Course">
+          <Key>
+            <PropertyRef Name="class_name" />
+            <PropertyRef Name="course" />
+          </Key>
+          <Property Name="class_name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="course" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="people" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Class_Exper">
+          <Key>
+            <PropertyRef Name="class_name" />
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="room_name" />
+          </Key>
+          <Property Name="class_name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="experment_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="room_name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Course_Exper">
+          <Key>
+            <PropertyRef Name="course" />
+            <PropertyRef Name="experment_name" />
+          </Key>
+          <Property Name="course" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="experment_name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Course_Information" Relationship="Self.FK_Course_Exper_Course_Information" FromRole="Course_Exper" ToRole="Course_Information" />
+        </EntityType>
+        <EntityType Name="Equipment_Loc">
+          <Key>
+            <PropertyRef Name="equip_name" />
+            <PropertyRef Name="fixed_assets_NO" />
+            <PropertyRef Name="state" />
+          </Key>
+          <Property Name="equip_name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="fixed_assets_NO" Type="String" MaxLength="40" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="factory_NO" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="time_buying" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="people" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="position" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="state_explane" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="edit_time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Equipment_Information" Relationship="Self.FK_Equipment_Loc_Equipment_Information" FromRole="Equipment_Loc" ToRole="Equipment_Information" />
+        </EntityType>
+        <Association Name="FK_Course_Exper_Course_Information">
+          <End Role="Course_Information" Type="Self.Course_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Course_Exper" Type="Self.Course_Exper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Information">
+              <PropertyRef Name="course" />
+            </Principal>
+            <Dependent Role="Course_Exper">
+              <PropertyRef Name="course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Loc_Equipment_Information">
+          <End Role="Equipment_Information" Type="Self.Equipment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Equipment_Loc" Type="Self.Equipment_Loc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment_Information">
+              <PropertyRef Name="equip_name" />
+            </Principal>
+            <Dependent Role="Equipment_Loc">
+              <PropertyRef Name="equip_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_login_information_login_rank">
+          <End Role="login_rank" Type="Self.login_rank" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="login_information" Type="Self.login_information" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="login_information">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="chem_databaseEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Class_Information" EntityType="Self.Class_Information" />
+          <EntitySet Name="Course_Information" EntityType="Self.Course_Information" />
+          <EntitySet Name="Equipment_Information" EntityType="Self.Equipment_Information" />
+          <EntitySet Name="login_information" EntityType="Self.login_information" />
+          <EntitySet Name="Login_News" EntityType="Self.Login_News" />
+          <EntitySet Name="login_rank" EntityType="Self.login_rank" />
+          <EntitySet Name="Class_Course" EntityType="Self.Class_Course" />
+          <EntitySet Name="Class_Exper" EntityType="Self.Class_Exper" />
+          <EntitySet Name="Course_Exper" EntityType="Self.Course_Exper" />
+          <EntitySet Name="Equipment_Loc" EntityType="Self.Equipment_Loc" />
+          <AssociationSet Name="FK_Course_Exper_Course_Information" Association="Self.FK_Course_Exper_Course_Information">
+            <End Role="Course_Information" EntitySet="Course_Information" />
+            <End Role="Course_Exper" EntitySet="Course_Exper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Loc_Equipment_Information" Association="Self.FK_Equipment_Loc_Equipment_Information">
+            <End Role="Equipment_Information" EntitySet="Equipment_Information" />
+            <End Role="Equipment_Loc" EntitySet="Equipment_Loc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_login_information_login_rank" Association="Self.FK_login_information_login_rank">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="login_information" EntitySet="login_information" />
+          </AssociationSet>
+          <EntitySet Name="Room" EntityType="chem_databaseModel.Room" />
+          <EntitySet Name="Experment_Information" EntityType="chem_databaseModel.Experment_Information" />
+          <EntitySet Name="Experment_Room" EntityType="chem_databaseModel.Experment_Room" />
+          <AssociationSet Name="FK_Experment_Room_Experment_Information" Association="chem_databaseModel.FK_Experment_Room_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_Room" EntitySet="Experment_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Room_Room" Association="chem_databaseModel.FK_Experment_Room_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Experment_Room" EntitySet="Experment_Room" />
+          </AssociationSet>
+          <EntitySet Name="Drug_Information" EntityType="chem_databaseModel.Drug_Information" />
+          <EntitySet Name="Drug_In_Out" EntityType="chem_databaseModel.Drug_In_Out" />
+          <AssociationSet Name="FK_Drug_In_Out_Drug_Information" Association="chem_databaseModel.FK_Drug_In_Out_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Drug_In_Out" EntitySet="Drug_In_Out" />
+          </AssociationSet>
+          <EntitySet Name="Drug_Loc" EntityType="chem_databaseModel.Drug_Loc" />
+          <AssociationSet Name="FK_Drug_Loc_Drug_Information" Association="chem_databaseModel.FK_Drug_Loc_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Drug_Loc" EntitySet="Drug_Loc" />
+          </AssociationSet>
+          <EntitySet Name="Course_Login" EntityType="chem_databaseModel.Course_Login" />
+          <EntitySet Name="Experment_Login" EntityType="chem_databaseModel.Experment_Login" />
+          <AssociationSet Name="FK_Course_Login_Course_Information" Association="chem_databaseModel.FK_Course_Login_Course_Information">
+            <End Role="Course_Information" EntitySet="Course_Information" />
+            <End Role="Course_Login" EntitySet="Course_Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Login_Experment_Information" Association="chem_databaseModel.FK_Experment_Login_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_Login" EntitySet="Experment_Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Login_login_rank" Association="chem_databaseModel.FK_Course_Login_login_rank">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Course_Login" EntitySet="Course_Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Login_login_rank" Association="chem_databaseModel.FK_Experment_Login_login_rank">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Experment_Login" EntitySet="Experment_Login" />
+          </AssociationSet>
+          <EntitySet Name="Drug_MixDrug" EntityType="chem_databaseModel.Drug_MixDrug" />
+          <AssociationSet Name="FK_Drug_MixDrug_Drug_Information" Association="chem_databaseModel.FK_Drug_MixDrug_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Drug_MixDrug" EntitySet="Drug_MixDrug" />
+          </AssociationSet>
+          <EntitySet Name="Drug_Mix" EntityType="chem_databaseModel.Drug_Mix" />
+          <EntitySet Name="Experment_Drug" EntityType="chem_databaseModel.Experment_Drug" />
+          <AssociationSet Name="FK_Experment_Drug_Drug_Information" Association="chem_databaseModel.FK_Experment_Drug_Drug_Information">
+            <End Role="Drug_Information" EntitySet="Drug_Information" />
+            <End Role="Experment_Drug" EntitySet="Experment_Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_MixDrug_Drug_Mix" Association="chem_databaseModel.FK_Drug_MixDrug_Drug_Mix">
+            <End Role="Drug_Mix" EntitySet="Drug_Mix" />
+            <End Role="Drug_MixDrug" EntitySet="Drug_MixDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_Drug_Experment_Information" Association="chem_databaseModel.FK_Experment_Drug_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_Drug" EntitySet="Experment_Drug" />
+          </AssociationSet>
+          <EntitySet Name="Experment_MixDrug" EntityType="chem_databaseModel.Experment_MixDrug" />
+          <AssociationSet Name="FK_Experment_MixDrug_Drug_Mix" Association="chem_databaseModel.FK_Experment_MixDrug_Drug_Mix">
+            <End Role="Drug_Mix" EntitySet="Drug_Mix" />
+            <End Role="Experment_MixDrug" EntitySet="Experment_MixDrug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experment_MixDrug_Experment_Information" Association="chem_databaseModel.FK_Experment_MixDrug_Experment_Information">
+            <End Role="Experment_Information" EntitySet="Experment_Information" />
+            <End Role="Experment_MixDrug" EntitySet="Experment_MixDrug" />
+          </AssociationSet>
+          <EntitySet Name="Student_Freetime" EntityType="chem_databaseModel.Student_Freetime" />
+          <EntitySet Name="Student_Signtime" EntityType="chem_databaseModel.Student_Signtime" />
+          <EntitySet Name="Student_Worktime" EntityType="chem_databaseModel.Student_Worktime" />
+          <AssociationSet Name="FK_Student_Freetime_Student_Infor1" Association="chem_databaseModel.FK_Student_Freetime_Student_Infor1">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Student_Freetime" EntitySet="Student_Freetime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Signtime_Student_Infor1" Association="chem_databaseModel.FK_Student_Signtime_Student_Infor1">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Student_Signtime" EntitySet="Student_Signtime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Worktime_Student_Infor1" Association="chem_databaseModel.FK_Student_Worktime_Student_Infor1">
+            <End Role="login_rank" EntitySet="login_rank" />
+            <End Role="Student_Worktime" EntitySet="Student_Worktime" />
+          </AssociationSet>
+          <EntitySet Name="ImageCheck" EntityType="chem_databaseModel.ImageCheck" />
+          </EntityContainer>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="room_name" />
+          </Key>
+          <Property Name="room_name" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="detail" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Experment_Room" Relationship="chem_databaseModel.FK_Experment_Room_Room" FromRole="Room" ToRole="Experment_Room" />
+        </EntityType>
+        <EntityType Name="Experment_Information">
+          <Key>
+            <PropertyRef Name="experment_name" />
+          </Key>
+          <Property Name="experment_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="detail" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="error" Type="Double" />
+          <NavigationProperty Name="Experment_Room" Relationship="chem_databaseModel.FK_Experment_Room_Experment_Information" FromRole="Experment_Information" ToRole="Experment_Room" />
+          <NavigationProperty Name="Experment_Login" Relationship="chem_databaseModel.FK_Experment_Login_Experment_Information" FromRole="Experment_Information" ToRole="Experment_Login" />
+          <NavigationProperty Name="Experment_Drug" Relationship="chem_databaseModel.FK_Experment_Drug_Experment_Information" FromRole="Experment_Information" ToRole="Experment_Drug" />
+          <NavigationProperty Name="Experment_MixDrug" Relationship="chem_databaseModel.FK_Experment_MixDrug_Experment_Information" FromRole="Experment_Information" ToRole="Experment_MixDrug" />
+        </EntityType>
+        <EntityType Name="Experment_Room">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="room_name" />
+          </Key>
+          <Property Name="experment_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="room_name" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Detail" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Experment_Information" Relationship="chem_databaseModel.FK_Experment_Room_Experment_Information" FromRole="Experment_Room" ToRole="Experment_Information" />
+          <NavigationProperty Name="Room" Relationship="chem_databaseModel.FK_Experment_Room_Room" FromRole="Experment_Room" ToRole="Room" />
+        </EntityType>
+        <Association Name="FK_Experment_Room_Experment_Information">
+          <End Type="chem_databaseModel.Experment_Information" Role="Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_Room" Role="Experment_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_Room">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Room_Room">
+          <End Type="chem_databaseModel.Room" Role="Room" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_Room" Role="Experment_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="room_name" />
+            </Principal>
+            <Dependent Role="Experment_Room">
+              <PropertyRef Name="room_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Drug_Information">
+          <Key>
+            <PropertyRef Name="drug_name" />
+          </Key>
+          <Property Name="drug_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="drug_another_name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="drug_Englishname" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="fen_zi_shi" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="fen_zi_liang" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="CAS" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="details" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="dangerous" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="counting" Type="Double" Nullable="false" />
+          <Property Name="standard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="people" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="edit_time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Drug_In_Out" Relationship="chem_databaseModel.FK_Drug_In_Out_Drug_Information" FromRole="Drug_Information" ToRole="Drug_In_Out" />
+          <NavigationProperty Name="Drug_Loc" Relationship="chem_databaseModel.FK_Drug_Loc_Drug_Information" FromRole="Drug_Information" ToRole="Drug_Loc" />
+          <NavigationProperty Name="Drug_MixDrug" Relationship="chem_databaseModel.FK_Drug_MixDrug_Drug_Information" FromRole="Drug_Information" ToRole="Drug_MixDrug" />
+          <NavigationProperty Name="Experment_Drug" Relationship="chem_databaseModel.FK_Experment_Drug_Drug_Information" FromRole="Drug_Information" ToRole="Experment_Drug" />
+        </EntityType>
+        <EntityType Name="Drug_In_Out">
+          <Key>
+            <PropertyRef Name="drug_name" />
+            <PropertyRef Name="change" />
+            <PropertyRef Name="people" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="drug_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="change" Type="Double" Nullable="false" />
+          <Property Name="people" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="standard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="position" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Drug_Information" Relationship="chem_databaseModel.FK_Drug_In_Out_Drug_Information" FromRole="Drug_In_Out" ToRole="Drug_Information" />
+        </EntityType>
+        <Association Name="FK_Drug_In_Out_Drug_Information">
+          <End Type="chem_databaseModel.Drug_Information" Role="Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Drug_In_Out" Role="Drug_In_Out" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Drug_In_Out">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Drug_Loc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="drug_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="position" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="counting" Type="Int32" Nullable="false" />
+          <Property Name="remain" Type="Double" Nullable="false" />
+          <Property Name="each" Type="Double" />
+          <Property Name="standard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="people" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="edit_time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Drug_Information" Relationship="chem_databaseModel.FK_Drug_Loc_Drug_Information" FromRole="Drug_Loc" ToRole="Drug_Information" />
+        </EntityType>
+        <Association Name="FK_Drug_Loc_Drug_Information">
+          <End Type="chem_databaseModel.Drug_Information" Role="Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Drug_Loc" Role="Drug_Loc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Drug_Loc">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Course_Login">
+          <Key>
+            <PropertyRef Name="course" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="course" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="isAdd" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Course_Information" Relationship="chem_databaseModel.FK_Course_Login_Course_Information" FromRole="Course_Login" ToRole="Course_Information" />
+          <NavigationProperty Name="login_rank" Relationship="chem_databaseModel.FK_Course_Login_login_rank" FromRole="Course_Login" ToRole="login_rank" />
+        </EntityType>
+        <EntityType Name="Experment_Login">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="experment_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="isAdd" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Experment_Information" Relationship="chem_databaseModel.FK_Experment_Login_Experment_Information" FromRole="Experment_Login" ToRole="Experment_Information" />
+          <NavigationProperty Name="login_rank" Relationship="chem_databaseModel.FK_Experment_Login_login_rank" FromRole="Experment_Login" ToRole="login_rank" />
+        </EntityType>
+        <Association Name="FK_Course_Login_Course_Information">
+          <End Type="chem_databaseModel.Course_Information" Role="Course_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Course_Login" Role="Course_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course_Information">
+              <PropertyRef Name="course" />
+            </Principal>
+            <Dependent Role="Course_Login">
+              <PropertyRef Name="course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Login_Experment_Information">
+          <End Type="chem_databaseModel.Experment_Information" Role="Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_Login" Role="Experment_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_Login">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Login_login_rank">
+          <End Type="chem_databaseModel.login_rank" Role="login_rank" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Course_Login" Role="Course_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Course_Login">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Login_login_rank">
+          <End Type="chem_databaseModel.login_rank" Role="login_rank" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_Login" Role="Experment_Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Experment_Login">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Drug_MixDrug">
+          <Key>
+            <PropertyRef Name="drug_mix" />
+            <PropertyRef Name="drug_name" />
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Name="drug_mix" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="drug_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="num" Type="Double" Nullable="false" />
+          <Property Name="standard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Drug_Information" Relationship="chem_databaseModel.FK_Drug_MixDrug_Drug_Information" FromRole="Drug_MixDrug" ToRole="Drug_Information" />
+          <NavigationProperty Name="Drug_Mix" Relationship="chem_databaseModel.FK_Drug_MixDrug_Drug_Mix" FromRole="Drug_MixDrug" ToRole="Drug_Mix" />
+        </EntityType>
+        <Association Name="FK_Drug_MixDrug_Drug_Information">
+          <End Type="chem_databaseModel.Drug_Information" Role="Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Drug_MixDrug" Role="Drug_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Drug_MixDrug">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Drug_Mix">
+          <Key>
+            <PropertyRef Name="drug_mix" />
+          </Key>
+          <Property Name="drug_mix" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="attention" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
+          <Property Name="standard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Drug_MixDrug" Relationship="chem_databaseModel.FK_Drug_MixDrug_Drug_Mix" FromRole="Drug_Mix" ToRole="Drug_MixDrug" />
+          <NavigationProperty Name="Experment_MixDrug" Relationship="chem_databaseModel.FK_Experment_MixDrug_Drug_Mix" FromRole="Drug_Mix" ToRole="Experment_MixDrug" />
+        </EntityType>
+        <EntityType Name="Experment_Drug">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="drug_name" />
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Name="experment_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="drug_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="num" Type="Double" Nullable="false" />
+          <Property Name="standard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Drug_Information" Relationship="chem_databaseModel.FK_Experment_Drug_Drug_Information" FromRole="Experment_Drug" ToRole="Drug_Information" />
+          <NavigationProperty Name="Experment_Information" Relationship="chem_databaseModel.FK_Experment_Drug_Experment_Information" FromRole="Experment_Drug" ToRole="Experment_Information" />
+        </EntityType>
+        <Association Name="FK_Experment_Drug_Drug_Information">
+          <End Type="chem_databaseModel.Drug_Information" Role="Drug_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_Drug" Role="Experment_Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Information">
+              <PropertyRef Name="drug_name" />
+            </Principal>
+            <Dependent Role="Experment_Drug">
+              <PropertyRef Name="drug_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_MixDrug_Drug_Mix">
+          <End Type="chem_databaseModel.Drug_Mix" Role="Drug_Mix" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Drug_MixDrug" Role="Drug_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Mix">
+              <PropertyRef Name="drug_mix" />
+            </Principal>
+            <Dependent Role="Drug_MixDrug">
+              <PropertyRef Name="drug_mix" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_Drug_Experment_Information">
+          <End Type="chem_databaseModel.Experment_Information" Role="Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_Drug" Role="Experment_Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_Drug">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Experment_MixDrug">
+          <Key>
+            <PropertyRef Name="experment_name" />
+            <PropertyRef Name="drug_mix" />
+            <PropertyRef Name="num" />
+          </Key>
+          <Property Name="experment_name" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="drug_mix" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="num" Type="Double" Nullable="false" />
+          <Property Name="standard" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Drug_Mix" Relationship="chem_databaseModel.FK_Experment_MixDrug_Drug_Mix" FromRole="Experment_MixDrug" ToRole="Drug_Mix" />
+          <NavigationProperty Name="Experment_Information" Relationship="chem_databaseModel.FK_Experment_MixDrug_Experment_Information" FromRole="Experment_MixDrug" ToRole="Experment_Information" />
+        </EntityType>
+        <Association Name="FK_Experment_MixDrug_Drug_Mix">
+          <End Type="chem_databaseModel.Drug_Mix" Role="Drug_Mix" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_MixDrug" Role="Experment_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug_Mix">
+              <PropertyRef Name="drug_mix" />
+            </Principal>
+            <Dependent Role="Experment_MixDrug">
+              <PropertyRef Name="drug_mix" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experment_MixDrug_Experment_Information">
+          <End Type="chem_databaseModel.Experment_Information" Role="Experment_Information" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="chem_databaseModel.Experment_MixDrug" Role="Experment_MixDrug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Experment_Information">
+              <PropertyRef Name="experment_name" />
+            </Principal>
+            <Dependent Role="Experment_MixDrug">
+              <PropertyRef Name="experment_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Student_Freetime">
+          <Key>
+            <PropertyRef Name="freetime_id" />
+          </Key>
+          <Property Name="freetime_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="time_type" Type="Int32" />
+          <NavigationProperty Name="login_rank" Relationship="chem_databaseModel.FK_Student_Freetime_Student_Infor1" FromRole="Student_Freetime" ToRole="login_rank" />
+        </EntityType>
+        <EntityType Name="Student_Signtime">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="date_time" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="login_rank" Relationship="chem_databaseModel.FK_Student_Signtime_Student_Infor1" FromRole="Student_Signtime" ToRole="login_rank" />
+        </EntityType>
+        <EntityType Name="Student_Worktime">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="time_type" Type="Int32" />
+          <Property Name="date_time" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="login_rank" Relationship="chem_databaseModel.FK_Student_Worktime_Student_Infor1" FromRole="Student_Worktime" ToRole="login_rank" />
+        </EntityType>
+        <Association Name="FK_Student_Freetime_Student_Infor1">
+          <End Type="chem_databaseModel.login_rank" Role="login_rank" Multiplicity="1" />
+          <End Type="chem_databaseModel.Student_Freetime" Role="Student_Freetime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Freetime">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Signtime_Student_Infor1">
+          <End Type="chem_databaseModel.login_rank" Role="login_rank" Multiplicity="1" />
+          <End Type="chem_databaseModel.Student_Signtime" Role="Student_Signtime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Signtime">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Worktime_Student_Infor1">
+          <End Type="chem_databaseModel.login_rank" Role="login_rank" Multiplicity="1" />
+          <End Type="chem_databaseModel.Student_Worktime" Role="Student_Worktime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="login_rank">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student_Worktime">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ImageCheck">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="str" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="chem_databaseModelStoreContainer" CdmEntityContainer="chem_databaseEntities2">
+          <EntitySetMapping Name="Class_Information">
+            <EntityTypeMapping TypeName="chem_databaseModel.Class_Information">
+              <MappingFragment StoreEntitySet="Class_Information">
+                <ScalarProperty Name="class_name" ColumnName="class_name" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="num" ColumnName="num" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_Information">
+            <EntityTypeMapping TypeName="chem_databaseModel.Course_Information">
+              <MappingFragment StoreEntitySet="Course_Information">
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="faculty" ColumnName="faculty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment_Information">
+            <EntityTypeMapping TypeName="chem_databaseModel.Equipment_Information">
+              <MappingFragment StoreEntitySet="Equipment_Information">
+                <ScalarProperty Name="equip_name" ColumnName="equip_name" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="factory" ColumnName="factory" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="login_information">
+            <EntityTypeMapping TypeName="chem_databaseModel.login_information">
+              <MappingFragment StoreEntitySet="login_information">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="creat_time" ColumnName="creat_time" />
+                <ScalarProperty Name="idebtity" ColumnName="idebtity" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="phonenumber_long" ColumnName="phonenumber_long" />
+                <ScalarProperty Name="phonenumber_short" ColumnName="phonenumber_short" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="last_time" ColumnName="last_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login_News">
+            <EntityTypeMapping TypeName="chem_databaseModel.Login_News">
+              <MappingFragment StoreEntitySet="Login_News">
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Content_1" ColumnName="Content_1" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="Member_Name" ColumnName="Member_Name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="infor" ColumnName="infor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="login_rank">
+            <EntityTypeMapping TypeName="chem_databaseModel.login_rank">
+              <MappingFragment StoreEntitySet="login_rank">
+                <ScalarProperty Name="token_Time" ColumnName="token_Time" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PW" ColumnName="PW" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="rank_control" ColumnName="rank_control" />
+                <ScalarProperty Name="rank_news" ColumnName="rank_news" />
+                <ScalarProperty Name="rank_drug" ColumnName="rank_drug" />
+                <ScalarProperty Name="rank_equipment" ColumnName="rank_equipment" />
+                <ScalarProperty Name="rank_experment" ColumnName="rank_experment" />
+                <ScalarProperty Name="rank_course" ColumnName="rank_course" />
+                <ScalarProperty Name="rank_class" ColumnName="rank_class" />
+                <ScalarProperty Name="rank_student" ColumnName="rank_student" />
+                <ScalarProperty Name="rank_open" ColumnName="rank_open" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Class_Course">
+            <EntityTypeMapping TypeName="chem_databaseModel.Class_Course">
+              <MappingFragment StoreEntitySet="Class_Course">
+                <ScalarProperty Name="class_name" ColumnName="class_name" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="people" ColumnName="people" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Class_Exper">
+            <EntityTypeMapping TypeName="chem_databaseModel.Class_Exper">
+              <MappingFragment StoreEntitySet="Class_Exper">
+                <ScalarProperty Name="class_name" ColumnName="class_name" />
+                <ScalarProperty Name="experment_name" ColumnName="experment_name" />
+                <ScalarProperty Name="room_name" ColumnName="room_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_Exper">
+            <EntityTypeMapping TypeName="chem_databaseModel.Course_Exper">
+              <MappingFragment StoreEntitySet="Course_Exper">
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="experment_name" ColumnName="experment_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment_Loc">
+            <EntityTypeMapping TypeName="chem_databaseModel.Equipment_Loc">
+              <MappingFragment StoreEntitySet="Equipment_Loc">
+                <ScalarProperty Name="equip_name" ColumnName="equip_name" />
+                <ScalarProperty Name="fixed_assets_NO" ColumnName="fixed_assets_NO" />
+                <ScalarProperty Name="factory_NO" ColumnName="factory_NO" />
+                <ScalarProperty Name="time_buying" ColumnName="time_buying" />
+                <ScalarProperty Name="people" ColumnName="people" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="state_explane" ColumnName="state_explane" />
+                <ScalarProperty Name="edit_time" ColumnName="edit_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room">
+            <EntityTypeMapping TypeName="chem_databaseModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="room_name" ColumnName="room_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experment_Information">
+            <EntityTypeMapping TypeName="chem_databaseModel.Experment_Information">
+              <MappingFragment StoreEntitySet="Experment_Information">
+                <ScalarProperty Name="error" ColumnName="error" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="experment_name" ColumnName="experment_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experment_Room">
+            <EntityTypeMapping TypeName="chem_databaseModel.Experment_Room">
+              <MappingFragment StoreEntitySet="Experment_Room">
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="room_name" ColumnName="room_name" />
+                <ScalarProperty Name="experment_name" ColumnName="experment_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drug_Information">
+            <EntityTypeMapping TypeName="chem_databaseModel.Drug_Information">
+              <MappingFragment StoreEntitySet="Drug_Information">
+                <ScalarProperty Name="edit_time" ColumnName="edit_time" />
+                <ScalarProperty Name="people" ColumnName="people" />
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="counting" ColumnName="counting" />
+                <ScalarProperty Name="dangerous" ColumnName="dangerous" />
+                <ScalarProperty Name="details" ColumnName="details" />
+                <ScalarProperty Name="CAS" ColumnName="CAS" />
+                <ScalarProperty Name="fen_zi_liang" ColumnName="fen_zi_liang" />
+                <ScalarProperty Name="fen_zi_shi" ColumnName="fen_zi_shi" />
+                <ScalarProperty Name="drug_Englishname" ColumnName="drug_Englishname" />
+                <ScalarProperty Name="drug_another_name" ColumnName="drug_another_name" />
+                <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drug_In_Out">
+            <EntityTypeMapping TypeName="chem_databaseModel.Drug_In_Out">
+              <MappingFragment StoreEntitySet="Drug_In_Out">
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="people" ColumnName="people" />
+                <ScalarProperty Name="change" ColumnName="change" />
+                <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drug_Loc">
+            <EntityTypeMapping TypeName="chem_databaseModel.Drug_Loc">
+              <MappingFragment StoreEntitySet="Drug_Loc">
+                <ScalarProperty Name="edit_time" ColumnName="edit_time" />
+                <ScalarProperty Name="people" ColumnName="people" />
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="each" ColumnName="each" />
+                <ScalarProperty Name="remain" ColumnName="remain" />
+                <ScalarProperty Name="counting" ColumnName="counting" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course_Login">
+            <EntityTypeMapping TypeName="chem_databaseModel.Course_Login">
+              <MappingFragment StoreEntitySet="Course_Login">
+                <ScalarProperty Name="isAdd" ColumnName="isAdd" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="course" ColumnName="course" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experment_Login">
+            <EntityTypeMapping TypeName="chem_databaseModel.Experment_Login">
+              <MappingFragment StoreEntitySet="Experment_Login">
+                <ScalarProperty Name="isAdd" ColumnName="isAdd" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="experment_name" ColumnName="experment_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drug_MixDrug">
+            <EntityTypeMapping TypeName="chem_databaseModel.Drug_MixDrug">
+              <MappingFragment StoreEntitySet="Drug_MixDrug">
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+                <ScalarProperty Name="drug_mix" ColumnName="drug_mix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drug_Mix">
+            <EntityTypeMapping TypeName="chem_databaseModel.Drug_Mix">
+              <MappingFragment StoreEntitySet="Drug_Mix">
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="attention" ColumnName="attention" />
+                <ScalarProperty Name="drug_mix" ColumnName="drug_mix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experment_Drug">
+            <EntityTypeMapping TypeName="chem_databaseModel.Experment_Drug">
+              <MappingFragment StoreEntitySet="Experment_Drug">
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="drug_name" ColumnName="drug_name" />
+                <ScalarProperty Name="experment_name" ColumnName="experment_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experment_MixDrug">
+            <EntityTypeMapping TypeName="chem_databaseModel.Experment_MixDrug">
+              <MappingFragment StoreEntitySet="Experment_MixDrug">
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="drug_mix" ColumnName="drug_mix" />
+                <ScalarProperty Name="experment_name" ColumnName="experment_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Freetime">
+            <EntityTypeMapping TypeName="chem_databaseModel.Student_Freetime">
+              <MappingFragment StoreEntitySet="Student_Freetime">
+                <ScalarProperty Name="time_type" ColumnName="time_type" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="freetime_id" ColumnName="freetime_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Signtime">
+            <EntityTypeMapping TypeName="chem_databaseModel.Student_Signtime">
+              <MappingFragment StoreEntitySet="Student_Signtime">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Worktime">
+            <EntityTypeMapping TypeName="chem_databaseModel.Student_Worktime">
+              <MappingFragment StoreEntitySet="Student_Worktime">
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="time_type" ColumnName="time_type" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageCheck">
+            <EntityTypeMapping TypeName="chem_databaseModel.ImageCheck">
+              <MappingFragment StoreEntitySet="ImageCheck">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="str" ColumnName="str" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

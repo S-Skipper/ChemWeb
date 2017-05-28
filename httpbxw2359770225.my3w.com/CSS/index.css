@@ -1,0 +1,753 @@
+/* global */
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 1500px;
+    min-width: 320px;
+    font-size: 14px;
+    font-family: 微软雅黑;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a:link, a:visited, a:hover, a:active{
+    text-decoration: none;
+}
+/* -webkit-scrollbar */
+::-webkit-scrollbar{
+    height: 7px;
+    width: 7px;
+    opacity: 0;
+}
+::-webkit-scrollbar-button{
+    display: none;
+}
+::-webkit-scrollbar-corner{
+    background-color: #eee;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #eee;
+    border-radius: 7px;
+}
+::-webkit-scrollbar-track{
+    background-color: #666;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track-piece:start{
+    background-color: #ccc;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: #white;
+}
+/* header */
+header{
+    box-sizing: border-box;
+    padding: 0 5%;
+    width: 100%;
+    height: 110px;
+    position: relative;
+    background-color: #3597dc;
+}
+header #logo{
+    margin-top: 5px;
+    height: 90%;
+    max-width: 50%;
+    opacity: 1;
+    -webkit-transition: opacity 0.3s, width 0.3s, height 0.3s;
+    -o-transition: opacity 0.3s, width 0.3s, height 0.3s;
+    transition: opacity 0.3s, width 0.3s, height 0.3s;
+}
+header #logo:hover{
+    opacity: 0.8;
+}
+header div{
+    position: absolute;
+    right: 5%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    text-align: right;
+    -webkit-transition: width 0.5s;
+    -o-transition: width 0.5s;
+    transition: width 0.5s;
+}
+header div form{
+    height: 50%;
+}
+header div form input{
+    opacity: 0.5;
+    font-size: 15px;
+    padding-right: 12px;
+    padding-left: 40px;
+    outline: 0;
+    width: 60%;
+    max-width: 100%;
+    height: 30px;
+    border: 1px solid #CCC;
+    margin-top: 15px;
+    border-radius: 24px;
+    -webkit-transition: width 0.5s, box-shadow 0.5s, opacity 0.5s;
+    -o-transition: width 0.5s, box-shadow 0.5s, opacity 0.5s;
+    transition: width 0.5s, box-shadow 0.5s, opacity 0.5s;
+    background-image: url(../img/search.png);
+    background-size: 20px 20px;
+    background-position: 12px;
+    background-repeat: no-repeat;
+}
+header div form input:focus{
+    width: 80%;
+    box-shadow: 0 0 3px #333;
+    opacity: 1;
+}
+header div nav{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 45px;
+    list-style: none;
+}
+header div nav a{
+    box-sizing: border-box;
+    height: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 12px;
+    display: inline-block;
+    flex-grow: 1;
+    -wekbit-flex-grow: 1;
+}
+header div nav a:first-child{
+    border-radius: 20px 0 0 0;
+}
+header div nav a:last-child{
+    border-radius: 0 20px 0 0;
+}
+header div nav a:link{
+    color: #2268a1;
+}
+header div nav a:visited{
+    color: #2268a1;
+}
+header div nav a:hover{
+    color: #FFF;
+    background-color: #0f73ba;
+}
+header div nav a:active{
+    color: #2268a1;
+}
+header div nav a.link_now{
+    background-color: white;
+    width: 5em;
+}
+header div nav a.link_now:hover{
+    color: #333;
+}
+/* banner */
+#banner{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 450px;
+    -webkit-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+}
+#banner #banner_contain{
+    position: absolute;
+    left: 0;
+    width: 400%;
+    -webkit-transition: left 1s;
+    -o-transition: left 1s;
+    transition: left 1s;
+}
+#banner #banner_contain img{
+    width: 25%;
+}
+#banner ul{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+}
+#banner ul li{
+    display: block;
+    height: 15px;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    opacity: 0;
+    -webkit-transition: opacity 1s, width 1s;
+    -o-transition: opacity 1s, width 1s;
+    transition: opacity 1s, width 1s;
+}
+#banner ul li:hover{
+    cursor: pointer;
+}
+#banner ul li:nth-child(2n){
+    background-color: white;
+}
+#banner ul li:nth-child(2n+1){
+    background-color: #3597dc;
+}
+/* login_window */
+#login_window{
+    border-radius: 20px 20px 20px 100px;
+    position: absolute;
+    height: 350px;
+    width: 300px;
+    right: 7%;
+    top: 50%;
+    margin-top: -180px;
+    background-color: white;
+    opacity: 0.1;
+    -webkit-transition: opacity 0.5s, width 0.5s, height 0.5s, right 0.5s, border-radius 0.5s;
+    -o-transition: opacity 0.5s, width 0.5s, height 0.5s, right 0.5s, border-radius 0.5s;
+    transition: opacity 0.5s, width 0.5s, height 0.5s, right 0.5s, border-radius 0.5s;
+}
+#login_window:hover, #login_window:target{
+    opacity: 0.95;
+}
+#login_window form{
+    width: 100%;
+    text-align: center;
+}
+#login_window form h4{
+    color: #2268a1;
+    border-bottom: 3px double #2268a1;
+    margin: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    font-size: 25px;
+    font-weight: normal;
+    letter-spacing: 20px;
+    padding: 15px 0;
+    padding-left: 30px;
+}
+#login_window form input{
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin: 10px 0;
+    height: 2.5em;
+    font-size: 14px;
+    padding-left: 30px;
+    padding-right: 10px;
+    border: 1px solid silver;
+    width: 85%;
+    background-image: url(../img/login_window.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+#login_window form input:focus{
+    box-shadow: 0 0 1px #2268a1;
+    border: 1px solid #06C;
+    outline: 0;
+}
+#login_window #username{
+    background-position: 5px 6px;
+}
+#login_window #password{
+    background-position: 5px -44px;
+}
+#login_window button{
+    margin-top: 20px;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    height: 2em;
+    background-color: #2268a1;
+    width: 85%;
+    letter-spacing: 2em;
+    padding-left: 2em;
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#login_window button:hover{
+    background-color: #5d9ed2;
+    text-shadow: 0 0 1px white;
+}
+#login_window p{
+    position: relative;
+    display: block;
+    border-bottom: 1px solid #5891bf;
+    text-align: left;
+    margin: 40px 30px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    font-size: 16px;
+}
+#login_window p span{
+    position: absolute;
+    left: 2.3em;
+    top: -0.4em;
+    font-size: 30px;
+    color: #164e7c;
+    font-family: 楷体;
+    font-weight: bold;
+}
+#login_window div{
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+}
+#login_window div a{
+    padding: 5px 10px;
+}
+#login_window div a+a{
+    border-left: 2px solid #CCC;
+}
+#login_window div a:link, #login_window div a:visited{
+    color: #3F2860;
+}
+#login_window div a:hover, #login_window div a:active{
+    color: #069;
+}
+/* main */
+#main{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    -webkit-display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    -webkit-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+}
+#main article{
+    overflow: hidden;
+    position: relative;
+    flex: 1 0 30%;
+    -webkit-flex: 1 0 30%;
+}
+.right_triangle:before, .left_triangle:after{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+}
+.right_triangle:before{
+    bottom: 15px;
+    left: 0;
+}
+.left_triangle:after{
+    top: 15px;
+    right: 0;
+}
+#notice{
+    background-color: #f6f6f6;
+}
+#notice.left_triangle:after{
+    border-right: 20px solid #f2f0f1;
+}
+#news{
+    background-color: #f2f0f1;
+}
+#news.right_triangle:before{
+    border-left: 20px solid #f6f6f6;
+}
+#news.left_triangle:after{
+    border-right: 20px solid #eceaeb;
+}
+#today{
+    background-color: #eceaeb;
+}
+#today.right_triangle:before{
+    border-left: 20px solid #f2f0f1;
+}
+#main article h3{
+    position: relative;
+    margin: 10px 0;
+    font-size: 22px;
+    height: 40px;
+    color: #331919;
+    letter-spacing: 0.5em;
+    padding-left: 2em;
+    text-align: left;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+#main article h3 span{
+    position: absolute;
+    top: 7px;
+    left: 90px;
+    letter-spacing: normal;
+    font-size: 30px;
+    color: #333;
+    opacity: 0.2;
+}
+#main article h3:hover{
+    cursor: pointer;
+}
+#main article h3:hover span{
+    text-shadow: 1px 1px 2px #003;
+    opacity: 0.4;
+}
+#main article ul{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 85%;
+}
+#main article ul a{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-top: 2px;
+    padding-left: 3%;
+    position: absolute;
+    color: #111;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    opacity: 0;
+    font-size: 16px;
+    height: 30px;
+    width: 75%;
+    z-index: 2;
+    -webkit-transition: top 0.5s, left 0.5s;
+    -o-transition: top 0.5s, left 0.5s;
+    transition: top 0.5s, left 0.5s;
+}
+#main article ul a+a{
+    border-top: 1px solid #666;
+}
+#main article ul a:hover{
+    font-weight: bold;
+}
+#main article ul a time{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+    font-size: 14px;
+    z-index: -1;
+    opacity: 0;
+}
+#main article ul a:hover time{
+    opacity: 0.9;
+}
+#main article ul .upScroll, #main article ul .downScroll{
+    opacity: 0.3;
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    -webkit-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+#main article ul .upScroll{
+    right: 40px;
+    top: 0;
+    border-top: 70px solid #a3c6df;
+    border-left: 40px solid transparent;
+}
+#main article ul .downScroll{
+    left: 20px;
+    top: 134px;
+    border-bottom: 70px solid #a3c6df;
+    border-right: 40px solid transparent;
+}
+#main article ul .upScroll:hover, #main article ul .downScroll:hover{
+    opacity: 1;
+}
+/* search_box */
+#search_box{
+    width: 100%;
+    height: 210px;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+}
+#search_box nav{
+    flex: 0 0 23%;
+    -webkit-flex: 0 0 23%;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+#search_box nav button{
+    position: relative;
+    flex: auto;
+    -webkit-flex: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 24px;
+    font-weight: bold;
+    background: #4f6068;
+    color: #CCC;
+    box-shadow: 1px 0 1px black inset;
+    -webkit-transition: background-color 0.3s, box-shadow 0.3s;
+    -o-transition: background-color 0.3s, box-shadow 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    outline: 0;
+}
+#search_box nav button.search_now{
+    background-color: #344046;
+    box-shadow: 0 0 0;
+}
+#search_box nav button.search_now:after{
+    position: absolute;
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 35px solid transparent;
+    border-bottom: 35px solid transparent;
+    border-right: 15px solid white;
+    top: 0;
+    right: 0;
+}
+#search_box article{
+    width: 0;
+    overflow: hidden;
+    -webkit-transition: width 0.3s, height 0.3s;
+    -o-transition: width 0.3s, height 0.3s;
+    transition: width 0.3s, height 0.3s;
+}
+#search_box article.search_now{
+    width: 100%;
+}
+#search_box article form{
+    padding-top: 10px;
+    font-size: 16px;
+    width: 90%;
+    margin: 0 auto;
+}
+#search_box article form button{
+    width: 90%;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    height: 40px;
+    background-color: #2268a1;
+    letter-spacing: 1em;
+    padding-left: 1em;
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#search_box article form button:hover{
+    background-color: #5d9ed2;
+    text-shadow: 0 0 1px white;
+}
+#search_box article form label{
+    display: block;
+    margin-bottom: 10px;
+}
+#search_box article form label span{
+    display: inline-block;
+    font-weight: bold;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    max-width: 10em;
+    width: 15%;
+    min-width: 6em;
+    background-color: #ecb455;
+    border-radius: 5px 0 0 5px;
+}
+#search_box article form label input, #search_box article form label select{
+    background-color: #f9f9f9;
+    font-size: 14px;
+    vertical-align: top;
+    display: inline-block;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0 1em;
+    outline: none;
+    border-radius: 0 5px 5px 0;
+    width: 75%;
+}
+#search_box article form label select{
+    background-image: url(../img/down_arrow.png);
+    background-position: 95%;
+    background-size: auto 13px;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+#search_box article form label input:focus, #search_box article form label select:focus{
+    box-shadow: 0 0 2px blue;
+}
+/* footer */
+footer{
+    padding-top: 10px;
+    height: 70px;
+    background-color: #1c1c1c;
+    text-align: center;
+    color: #CCC;
+}
+#footer_others{
+    margin-top: 15px;
+}
+#footer_others a{
+    margin: 0 10px;
+    position: relative;
+    z-index: 100;
+}
+#footer_others a:link, #footer_others a:visited{
+    color: #2268a1;
+}
+#footer_others a:hover, #footer_others a:active{
+    color: white;
+}
+#connect_img{
+    display: block;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top: -210px;
+    left: -75px;
+    background-image: url(../img/connect.png);
+    background-size: contain;
+    display: none;
+}
+#connect_img:after{
+    position: absolute;
+    content: "";
+    bottom: -10px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid white;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+#footer_others a:hover #connect_img{
+    display: block;
+}
+/* responsive */
+@media all and (max-width: 768px){
+    header #logo{
+        height: 50px;
+        max-width: 30%;
+        opacity: 0.6;
+    }
+    header div{
+        width: 90%;
+    }
+    header div form input{
+        width: 50%;
+    }
+    header div form input:focus{
+        width: 60%;
+    }
+    header div nav a{
+        min-width: 16%;
+    }
+    #banner{
+        height: 200px;
+    }
+    #banner ul{
+        display: none;
+    }
+    #login_window{
+        border-radius: 0;
+        width: 75%;
+        top: 0;
+        right: 0;
+        margin-top: 0;
+        opacity: 0;
+        height: 200px;
+    }
+    #login_window form h4{
+        display: none;
+    }
+    #login_window form input{
+        margin: 7px 0;
+    }
+    #login_window p{
+        margin: 20px 30px;
+        margin-bottom: 10px;
+        padding-left: 15px;
+        font-size: 16px;
+    }
+    #login_window p span{
+        position: absolute;
+        left: 2.3em;
+        top: -0.4em;
+        font-size: 30px;
+        color: #164e7c;
+        font-family: 楷体;
+        font-weight: bold;
+    }
+    #login_window button{
+        margin-top: 12px;
+    }
+    #login_window div{
+        bottom: 10px;
+        right: 15px;
+    }
+    #main{
+        flex-direction: column;
+        -webkit-flex-direction: column;
+        height: 900px;
+    }
+    #main article{
+        height: 300px;
+    }
+    .right_triangle:before, .left_triangle:after{
+        display: none;
+    }
+    #search_box{
+        height: 280px;
+        flex-direction: column;
+        -webkit-flex-direction: column;
+    }
+    #search_box nav{
+        height: 70px;
+        flex: 0 0 70px;
+        -webkit-flex: 0 0 70px;
+        flex-direction: row;
+        -webkit-flex-direction: row;
+    }
+    #search_box button{
+        height: 100%;
+        width: 33.33%;
+    }
+    #search_box nav button.search_now:after{
+        display: none;
+    }
+    #search_box article{
+        width: 100%;
+        height: 0;
+    }
+    #search_box article.search_now{
+        height: 100%;
+    }
+    #search_box article form label input, #search_box article form label select{
+        width: 65%;
+}

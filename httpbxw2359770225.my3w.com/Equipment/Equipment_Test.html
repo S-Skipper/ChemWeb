@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript">
+        $(function () {
+            $('#form').submit(function (e) {
+                e.preventDefault();
+                var temp = {};
+                $($('#form').serializeArray()).each(function (inx, ele) {
+                    temp[ele.name] = ele.value;
+                });
+                    data = {
+                    type: temp.type,
+                    id: temp.id,
+                    pw: temp.pw
+                };
+                switch (data.type) {
+                    
+                    case 'GetEquip':
+                        data.equip_name = temp.equip_name;
+                        break;
+                    case 'GetEquipDetail':
+                    case 'GetEquipLocDetail':
+                        data.equip_name = temp.equip_name;
+                        break;
+                    case 'Equip_Insert_Update':
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    
+                    case 'Equip_Delete':
+                        data.equip_name = temp.equip_name;
+                        break;
+                    case 'GetEquipLoc':
+                    
+                        data.fixed_assets_NO = temp.fixed_assets_NO;
+                        break;
+                    case 'EquipLoc_Update':
+                    case 'EquipLoc_Insert':
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'EquipLoc_Delete':
+                        data.fixed_assets_NO = temp.fixed_assets_NO;
+                        break;
+                    
+                    
+                    default:
+                        return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    crossDomain: true,
+                    url: '../Ashx/EquipmentHandler.ashx',
+                    data: 'json=' + escape(JSON.stringify(data)),
+                    dataType: 'json',
+                    success: sFun
+                });
+            });
+
+            function sFun(result) {
+                $('#send').html(JSON.stringify(data));
+                $('#recv').html(JSON.stringify(result));
+            }
+
+            $('#type').change(function () {
+                $('textarea').prop('disabled', true).html('');
+                switch ($(this).val()) {
+                    case 'Equip_Insert_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"equip_old":"12","equip_name":"12","model":"1","factory":"b","detail":"c","price":"10000"}')
+                        break;
+                    case 'EquipLoc_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"equip_name":"12","old_fixed_assets_NO":"333","fixed_assets_NO":"333","factory_NO":"2","time_buying":"2017年11月","people":"500","position":"1233","position":"1233","state":"在用","state_explane":"1233"}')
+                        break;
+                    case 'EquipLoc_Insert':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"equip_name":"12","fixed_assets_NO":"333","factory_NO":"2","time_buying":"2017年11月","people":"500","position":"1233","position":"1233","state":"在用","state_explane":"1233"}')
+                        break;
+                        
+                    default:
+                        break;
+                }
+            });
+        });
+    </script>
+    <title>逗比咸鱼</title>
+</head>
+
+<body>
+    <div class="well well-lg">
+        <form id="form" class="center-block" style="max-width: 1200px">
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">请求类型</div>
+                        <select name="type" id="type" class="form-control">
+                            <option value="GetEquip" selected="selected">GetEquip</option>
+                            <option value="GetEquipDetail">GetEquipDetail</option>
+                            <option value="Equip_Insert_Update">Equip_Insert_Update</option>
+                            <option value="Equip_Delete">Equip_Delete</option>
+                            <option value="GetEquipLoc">GetEquipLoc</option>
+                            <option value="GetEquipLocDetail">GetEquipLocDetail</option>
+                            <option value="EquipLoc_Insert">EquipLoc_Insert</option>
+                            <option value="EquipLoc_Update">EquipLoc_Update</option>
+                            <option value="EquipLoc_Delete">EquipLoc_Delete</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">用户名</div>
+                        <input type="text" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">密码</div>
+                        <input type="text" class="form-control" name="pw">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">仪器名</div>
+                        <input type="text" class="form-control" name="equip_name">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">固定资产号</div>
+                        <input type="text" class="form-control" name="fixed_assets_NO">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">位置</div>
+                        <input type="text" class="form-control" name="loc">
+                    </div>
+                </div>
+            
+                
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">起始时间</div>
+                        <input type="text" class="form-control" name="from">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">终止时间</div>
+                        <input type="text" class="form-control" name="to">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-horizontal form-group">
+                <label class="col-sm-2 control-label">JSON输入</label>
+                <div class="col-sm-10"><textarea name="json" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea></div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>发送格式</strong></h4>
+                    <textarea id="send" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>接收格式</strong></h4>
+                    <textarea id="recv" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-block btn-info">确认提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d134c54058604445aa55cd2e01e095e9" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="chem_databaseModel.Class_Information" Width="1.5" PointX="11.375" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.Course_Information" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.Equipment_Information" Width="1.5" PointX="14.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.login_information" Width="1.5" PointX="12.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.Login_News" Width="1.5" PointX="12.125" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.login_rank" Width="1.5" PointX="9.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.Class_Course" Width="1.5" PointX="13.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.Class_Exper" Width="1.5" PointX="15.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.Course_Exper" Width="1.5" PointX="14.625" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="chem_databaseModel.Equipment_Loc" Width="1.5" PointX="16.25" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="chem_databaseModel.FK_Course_Exper_Course_Information" ManuallyRouted="false" />
+        <AssociationConnector Association="chem_databaseModel.FK_Equipment_Loc_Equipment_Information" ManuallyRouted="false" />
+        <AssociationConnector Association="chem_databaseModel.FK_login_information_login_rank" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="chem_databaseModel.Room" Width="1.5" PointX="3.25" PointY="9.75" />
+        <EntityTypeShape EntityType="chem_databaseModel.Experment_Information" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="chem_databaseModel.Experment_Room" Width="1.5" PointX="0.625" PointY="9.75" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_Room_Experment_Information" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_Room_Room" />
+        <EntityTypeShape EntityType="chem_databaseModel.Drug_Information" Width="1.5" PointX="1.125" PointY="1.75" />
+        <EntityTypeShape EntityType="chem_databaseModel.Drug_In_Out" Width="1.5" PointX="6" PointY="3.5" />
+        <AssociationConnector Association="chem_databaseModel.FK_Drug_In_Out_Drug_Information" />
+        <EntityTypeShape EntityType="chem_databaseModel.Drug_Loc" Width="1.5" PointX="3.75" PointY="3.25" />
+        <AssociationConnector Association="chem_databaseModel.FK_Drug_Loc_Drug_Information" />
+        <EntityTypeShape EntityType="chem_databaseModel.Course_Login" Width="1.5" PointX="10.25" PointY="9.625" />
+        <EntityTypeShape EntityType="chem_databaseModel.Experment_Login" Width="1.5" PointX="5.625" PointY="7.125" />
+        <AssociationConnector Association="chem_databaseModel.FK_Course_Login_Course_Information" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_Login_Experment_Information" />
+        <AssociationConnector Association="chem_databaseModel.FK_Course_Login_login_rank" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_Login_login_rank" />
+        <EntityTypeShape EntityType="chem_databaseModel.Drug_MixDrug" Width="1.5" PointX="5.875" PointY="0.625" />
+        <AssociationConnector Association="chem_databaseModel.FK_Drug_MixDrug_Drug_Information" />
+        <EntityTypeShape EntityType="chem_databaseModel.Drug_Mix" Width="1.5" PointX="3.25" PointY="0.625" />
+        <EntityTypeShape EntityType="chem_databaseModel.Experment_Drug" Width="1.5" PointX="5.75" PointY="9.75" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_Drug_Drug_Information" />
+        <AssociationConnector Association="chem_databaseModel.FK_Drug_MixDrug_Drug_Mix" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_Drug_Experment_Information" />
+        <EntityTypeShape EntityType="chem_databaseModel.Experment_MixDrug" Width="1.5" PointX="3.5" PointY="7.125" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_MixDrug_Drug_Mix" />
+        <AssociationConnector Association="chem_databaseModel.FK_Experment_MixDrug_Experment_Information" />
+        <EntityTypeShape EntityType="chem_databaseModel.Student_Freetime" Width="1.5" PointX="14" PointY="12.75" />
+        <EntityTypeShape EntityType="chem_databaseModel.Student_Signtime" Width="1.5" PointX="14" PointY="15.5" />
+        <EntityTypeShape EntityType="chem_databaseModel.Student_Worktime" Width="1.5" PointX="14" PointY="18.375" />
+        <AssociationConnector Association="chem_databaseModel.FK_Student_Freetime_Student_Infor1" />
+        <AssociationConnector Association="chem_databaseModel.FK_Student_Signtime_Student_Infor1" />
+        <AssociationConnector Association="chem_databaseModel.FK_Student_Worktime_Student_Infor1" />
+        <EntityTypeShape EntityType="chem_databaseModel.ImageCheck" Width="1.5" PointX="8.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

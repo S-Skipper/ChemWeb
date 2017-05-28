@@ -1,0 +1,299 @@
+#main label{
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+#main label button{
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #3597dc;
+    background-color: #3597dc;
+    height: 42px;
+    font-size: 16px;
+    width: 10%;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5em;
+    padding-left: 0.5em;
+    min-width: 4em;
+    border-radius: 0 15px 15px 0;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#main label button:hover{
+    cursor: pointer;
+    background-color: #20aadc;
+}
+#main label input{
+    margin: 0;
+    padding: 0;
+    border-radius:15px 0 0 15px;
+    font-size: 16px;
+    width: 75%;
+    height: 40px;
+    border: 1px solid #CCC;
+    background-color: rgba(210, 210, 210, 0.1);
+    outline: 0;
+    padding: 0 10px;
+}
+#main label input:focus, #main label input:focus+button{
+    box-shadow: 0 0 2px blue;
+}
+#main table{
+    text-align: left;
+    margin: 20px auto;
+    width: 90%;
+    border-collapse: collapse;
+    -webkit-transition: width 0.3s;
+    -o-transition: width 0.3s;
+    transition: width 0.3s;
+}
+#main td, #main th{
+    border: 1px solid #EEE;
+}
+#main thead{
+    font-size: 1.2em;
+    background-color: #FAFAAF;
+}
+#main table td, #main table th{
+    padding: 5px 10px;
+}
+#main table tr td:first-child, #main table tr td:last-child,
+#main table tr th:first-child, #main table tr th:last-child{
+    width: 25%;
+}
+#main table tbody tr{
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#main table tbody tr:nth-child(2n+1){
+    background-color: #F6F5FA;
+}
+#main table tbody tr:hover{
+    cursor: pointer;
+    background-color: #EFEFF0;
+}
+#page{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 5%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#page li{
+    text-align: center;
+    width: 5%;
+    margin: 0;
+    padding: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    border-left: 0;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+}
+#page li:hover{
+    cursor: pointer;
+    background-color: #EEE;
+}
+#page li:first-child{
+    border-left: 1px solid #CCC;
+}
+#page li.active{
+    background-color: #3597dc;
+    cursor: default;
+    color: white;
+}
+#page button{
+    margin: 0;
+    bottom: 0;
+    outline: 0;
+    border: 1px solid #CCC;
+    background-color: #33cf63;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#page button:hover{
+    background-color: #6dd28c;
+}
+.modal{
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+.modal_container{
+    margin-top: 100px;
+    width: 1000px;
+    max-height: 400px;
+    background-color: white;
+    box-shadow: 0 0 10px #333;
+}
+.modal_header{
+    position: relative;
+    height: 40px;
+    border-bottom: 1px solid #CCC;
+}
+.modal_header ul{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+}
+.modal_header ul li{
+    padding: 0 1em;
+    cursor: pointer;
+}
+.modal_header ul li.active{
+    background-color: #3597dc;
+    color: white;
+}
+.modal_header .close{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    color: #999;
+    -webkit-transition: color 0.3s;
+    -o-transition: color 0.3s;
+    transition: color 0.3s;
+}
+.modal_header .close:hover{
+    color: #333;
+}
+.modal_main{
+    padding: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 360px;
+    overflow: auto;
+    display: none;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+.modal_main.active{
+    display: flex;
+    display: -webkit-flex;
+}
+.modal_main div{
+    padding: 8px 10px;
+    box-sizing: border-box;
+    flex: 0 0 50%;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+.modal_main div.full{
+    flex: 0 0 100%;
+}
+.modal_main div.half{
+    flex: 0 0 25%;
+}
+.modal_main div span{
+    font-weight: bold;
+    padding: 5px;
+    flex: none;
+    border: 1px solid rgb(168, 171, 171);
+}
+.modal_main div input, .modal_main div textarea{
+    margin: 0;
+    padding: 5px;
+    border: 1px solid rgb(168, 171, 171);
+    width: 0;
+    flex: auto;
+}
+.modal_main div textarea{
+    height: 3em;
+}
+.modal_main div span+input{
+    border-left: 0;
+}
+.modal_main div>label{
+    text-align: left !important;
+    font-weight: bold;
+    margin: 0 !important;
+    flex: 0 0 100%;
+    -webkit-flex: 0 0 100%;
+}
+.modal_main div button{
+    margin: 0;
+    outline: 0;
+    padding: 0.5em;
+    padding-left: 1em;
+    border: 1px solid #3597dc;
+    width: 100%;
+    background-color: #3597dc;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 0.2em;
+}
+.modal_main div button:hover{
+    cursor: pointer;
+    background-color: #20aadc;
+}
+/* responsive */
+@media all and (max-width: 768px){
+    #main label input{
+        width: 65%;
+    }
+    #main label button{
+        padding: 0;
+        letter-spacing: 0;
+        width: 20%;
+    }
+    #main table{
+        width: 100%;
+    }
+    #page{
+        justify-content: center;
+        padding-right: 0;
+    }
+    #page li{
+        width: 11%;
+    }
+    .modal_container{
+        width: 100%;
+    }
+    .modal_main div{
+        flex: 0 0 100%;
+    }
+    .modal_main div.half{
+        flex: 0 0 50%;
+    }
+    .modal_main div textarea{
+        height: 4em;
+    }
+}

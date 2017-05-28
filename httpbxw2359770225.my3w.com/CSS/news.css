@@ -1,0 +1,211 @@
+#main_container{
+    box-sizing: border-box;
+    background-color: #DDE5EC;
+    padding: 0 80px;
+}
+#main{
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 0 10px black;
+    padding-bottom: 50px;
+}
+div.content{
+    padding: 0 30px;
+}
+div.content h1.title{
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 5px;
+}
+div.content div.contentInfo{
+    text-align: right;
+    color: rgb(108, 187, 231);
+    font-size: 10px;
+    padding-right: 30px;
+    margin-bottom: 1em;
+    border-bottom: 1px solid rgb(142, 142, 142);
+}
+div.content p, div.content ul, div.content ol, div.content blockquote{
+    margin: 0;
+    padding: 0;
+}
+div.content ul, div.content ol{
+    margin-left: 1em;
+}
+div.content h1{
+    font-size: 1.8em;
+}
+div.content h2{
+    font-size: 1.6em;
+}
+div.content h3{
+    font-size: 1.4em;
+}
+div.content h4{
+    font-size: 1.2em;
+}
+div.content table{
+    border-collapse: collapse;
+}
+div.contentFooter{
+    border-top: 1px solid rgb(142, 142, 142);
+    text-align: right;
+    font-size: 10px;
+    color: rgb(108, 187, 231);
+    margin-top: 10px;
+    padding-top: 20px;
+    padding-right: 50px;
+}
+/*.row & .col*/
+div.row, div.col{
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+div.row{
+    margin-bottom: 30px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+}
+div.row:hover{
+    background-color: rgb(240, 240, 240);
+    height: 250px;
+}
+div.col{
+    border-left: 1px solid gray;
+    opacity: 0.8;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    padding-bottom: 20px;
+    width: 33%;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    height: 100%;
+    overflow: hidden;
+}
+div.col:hover{
+    cursor: pointer;
+    background-color: rgb(250, 250, 250);
+    opacity: 1;
+    width: 70%;
+}
+div.col h3{
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    word-break: keep-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+div.col p{
+    border-top: 1px solid rgb(50, 13, 48);
+    overflow: hidden;
+    height: 11em;
+    text-indent: 2em;
+    margin: 0;
+    margin-top: 10px;
+    padding: 20px;
+    padding-bottom: 0;
+    padding-top: 15px;
+}
+div.col span{
+    color: rgb(131, 127, 113);
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    visibility: hidden;
+}
+div.col time{
+    color: rgb(131, 127, 113);
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    visibility: hidden;
+}
+div.col:hover span, div.col:hover time{
+    visibility: visible;
+}
+div.col:after{
+    content: "";
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    background: #3597dc;
+    right: 50%;
+    top: 50%;
+    opacity: 1;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+div.col:hover:after{
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+/*ul*/
+#main ul.paging{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 5%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#main ul.paging li{
+    text-align: center;
+    width: 5%;
+    margin: 0;
+    padding: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    border-left: 0;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+}
+#main ul.paging li:hover{
+    cursor: pointer;
+    background-color: #EEE;
+}
+#main ul.paging li:first-child{
+    border-left: 1px solid #CCC;
+}
+/* responsive */
+@media all and (max-width: 768px){
+    #main_container{
+        padding: 0;
+    }
+    div.row{
+        flex-direction: column;
+        height: 500px;
+    }
+    div.row:hover{
+        height: 500px;
+    }
+    div.col{
+        width: 100%;
+    }
+    div.col:hover{
+        width: 100%;
+    }
+    div.content div.contentInfo{
+        text-align: center;
+        font-size: 10px;
+        padding-right: 0;
+    }
+}

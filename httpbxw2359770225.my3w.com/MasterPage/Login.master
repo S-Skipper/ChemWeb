@@ -1,0 +1,104 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Login.master.cs" Inherits="MasterPage_Login" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta charset="UTF-8"/>
+<link rel="stylesheet" href="../CSS/pages.css" type="text/css"/>
+<script src="../jQuery/jquery-2.2.1.min.js"></script>
+<script src="../js/pages.js"></script>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="email=no" name="format-detection" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   
+    <asp:ContentPlaceHolder id="head" runat="server"> 
+       
+    </asp:ContentPlaceHolder>
+</head>
+<body onselectstart="return false" runat="server">
+    <header>
+        <img src="../img/logo.png" alt="logo" id="logo"/>
+        <div>
+            <form action="post" id="search">
+                <input type="text" placeholder="搜索..."/>
+            </form>
+            <nav>
+                <a id="link_home" href="../Index.aspx">首页</a>
+                <a id="link_system" href="#">系统</a>
+                <a id="link_data" href="#">资料</a>
+                <a id="link_open" href="#">开放实验</a>
+                <a id="link_login" href="../Login/Login_Home.aspx" class="link_now">个人中心</a> 
+                <!--  <a id="link_login" href="index.html#login_window">登录</a>-->
+            </nav>
+        </div>
+    </header>
+    <section id="main_container">
+        <aside>
+            <img src="../img/zoom_out.png" alt="ZoomIn" id="aside_zoom"/>
+            <div id="aside_tree" >
+   
+                <ul>
+                    <li id ="LOGIN" runat="server"><a href="../Login/Login_Home.aspx"><img src="../img/icon1.png" alt="icon"/>个人中心</a>
+                        <ul>
+                            <li><a href="#"><img src="../img/icon2.png" alt="icon"/>用户模块</a>
+                                <ul>
+                                    <li><a href="../Login/Login_Info.aspx"><img src="../img/icon3.png" alt="icon"/>个人信息页面</a></li>
+                                    <li><a href="../Login/Login_ChangePW.aspx"><img src="../img/icon3.png" alt="icon"/>修改密码</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li id ="LOGIN_C" runat="server"><a href="#"><img src="../img/icon2.png" alt="icon"/>管理员模块</a>
+                                <ul>
+                                    <li><a href="../Login/Login_Rank.aspx"><img src="../img/icon3.png" alt="icon"/>权限管理</a></li>
+                                
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li  runat="server" id ="NEWS" ><a href="../News/News_Home.aspx"><img src="../img/icon1.png" alt="icon"/>新闻中心</a></li>
+                    <li runat="server" id ="DRUG" ><a href="../Drug/Drug_Info.aspx"><img src="../img/icon1.png" alt="icon"/>药品试剂管理</a></li>
+                                     
+                    <li><a href="../Equipment/Equipment_Inf.aspx"><img src="../img/icon1.png" alt="icon"/>仪器管理</a></li>
+                    <li><a href="../Experment/Experment_Inf.aspx"><img src="../img/icon1.png" alt="icon"/>实验管理</a></li>
+                    <li><a href="../Course/Course_Inf.aspx"><img src="../img/icon1.png" alt="icon"/>课程管理</a></li>
+                    <li><a href="#"><img src="../img/icon1.png" alt="icon"/>教学管理</a></li>
+                    <li><a href="#"><img src="../img/icon1.png" alt="icon"/>学生助理管理</a></li>
+                    <li><a href="#"><img src="../img/icon1.png" alt="icon"/>开放性实验管理</a></li>
+
+                   
+                </ul>
+            </div>
+        </aside>
+        <article id="main">
+             <form id="form2" runat="server" >
+    <div> 
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Services>
+          </Services>
+        </asp:ScriptManager>
+
+         
+             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+               </asp:ContentPlaceHolder>
+    </div>
+    </form>
+        </article>
+    </section>
+    <footer>
+        <span id="copyright">&copy;中山大学珠海校区化学实验室信息管理平台 by Cmd</span>
+        <div id="footer_others">
+            <a href="#">About Us</a>
+            <a href="javascript:void(0)">联系我们<div id="connect_img"></div></a>
+            <a target="_self" href="http://wpa.qq.com/msgrd?v=3&uin=784270942&site=qq&menu=yes">意见反馈</a>
+        </div>
+    </footer>
+
+</body>
+</html>

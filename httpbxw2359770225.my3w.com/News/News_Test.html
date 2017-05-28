@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript">
+        $(function () {
+            $('#form').submit(function (e) {
+                e.preventDefault();
+                var temp = {};
+                $($('#form').serializeArray()).each(function (inx, ele) {
+                    temp[ele.name] = ele.value;
+                });
+                    data = {
+                    type: temp.type,
+                    
+                };
+                switch (data.type) {
+                   
+                    case 'GetNews':
+                        data.title = temp.title;
+                        break;
+                    case 'GetNewsLate':
+                        data.num = temp.num;
+                        data.news_type = temp.news_type;
+                        break;
+                    case 'DelNews':
+                        data.ArticleID = temp.ArticleID;
+                        data.id = temp.id;
+                        data.pw = temp.pw;
+                        break;
+                    case 'GetNewsDetail':
+                        data.ArticleID = temp.ArticleID;
+                        break;
+                    case 'Add_UpdateNews':
+                        data.id = temp.id;
+                        data.pw = temp.pw;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    default:
+                        return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    crossDomain: true,
+                    url: '../Ashx/NewsHandler.ashx',
+                    data: 'json=' + escape(JSON.stringify(data)),
+                    dataType: 'json',
+                    success: sFun
+                });
+            });
+
+            function sFun(result) {
+                $('#send').html(JSON.stringify(data));
+                $('#recv').html(JSON.stringify(result));
+            }
+
+            $('#type').change(function () {
+                $('textarea').prop('disabled', true).html('');
+                switch ($(this).val()) {
+                    case 'Add_UpdateNews':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"ArticleID":"-1","Title":"错不在没保障","Content_1":"错不在没保障","Hits":"0","Member_Name":"sss","news_type":"1","infor":"1"}')
+                        break;
+    
+                    default:
+                        break;
+                }
+            });
+        });
+    </script>
+    <title>逗比咸鱼</title>
+</head>
+
+<body>
+    <div class="well well-lg">
+        <form id="form" class="center-block" style="max-width: 1200px">
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">请求类型</div>
+                        <select name="type" id="type" class="form-control">
+                            <option value="GetNews">GetNews</option>
+                            <option value="GetNewsLate">GetNewsLate</option>
+                            <option value="DelNews">DelNews</option>
+                            <option value="GetNewsDetail">GetNewsDetail</option>
+                            <option value="Add_UpdateNews">Add_UpdateNews</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">用户名</div>
+                        <input type="text" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">密码</div>
+                        <input type="text" class="form-control" name="pw">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">新闻类型</div>
+                        <input type="text" class="form-control" name="news_type">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">新闻编号</div>
+                        <input type="text" class="form-control" name="ArticleID">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">数量</div>
+                        <input type="text" class="form-control" name="num">
+                    </div>
+                </div>
+            
+                
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">新闻题目</div>
+                        <input type="text" class="form-control" name="title">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">终止时间</div>
+                        <input type="text" class="form-control" name="to">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-horizontal form-group">
+                <label class="col-sm-2 control-label">JSON输入</label>
+                <div class="col-sm-10"><textarea name="json" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea></div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>发送格式</strong></h4>
+                    <textarea id="send" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>接收格式</strong></h4>
+                    <textarea id="recv" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-block btn-info">确认提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

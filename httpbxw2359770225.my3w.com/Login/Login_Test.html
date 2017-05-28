@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript">
+        $(function () {
+            $('#form').submit(function (e) {
+                e.preventDefault();
+                var temp = {};
+                var strCookie = document.cookie;
+                var arrCookie = strCookie.split("; ");
+                var CheckCod_No;
+                //遍历cookie数组，处理每个cookie对
+                for (var i = 0; i < arrCookie.length; i++) {
+                    var arr = arrCookie[i].split("=");
+                    //找到名称为userId的cookie，并返回它的值
+                    if ("CheckCod_No" == arr[0]) {
+                        CheckCod_No = arr[1];
+                        break;
+                    }
+                }
+                $($('#form').serializeArray()).each(function (inx, ele) {
+                    temp[ele.name] = ele.value;
+                });
+                data = {
+                    type: temp.type,
+                    id: temp.id,
+                };
+                switch (data.type) {
+                    
+                    case 'GetInfoAll':
+                    case 'GetRankByID':
+                    case 'GetRankAll':
+                    case 'UpdateLastTime':
+                    case 'GetLastTime':
+                        data.pw = temp.pw;
+                        break;
+                    case 'Login':
+                        data.pw = temp.pw;
+                        data.No = CheckCod_No;
+                        data.str = temp.str;
+                        break;
+                    case 'GetQA':
+                        break;
+                    case 'GetInfoByID':
+                        data.find_id = temp.find_id;
+                        data.pw = temp.pw;
+                        break;
+                    case 'Info_Update':
+                        data.pw = temp.pw;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'Rank_UpdateQA':
+                        data.pw = temp.pw;
+                        data.question = temp.question;
+                        data.answer = temp.answer;
+                        data.old_pw = temp.old_pw;
+                        break;
+                    case 'Rank_UpdatePW':
+                        data.pw = temp.pw;
+                        data.old_pw = temp.old_pw;
+                        data.new_pw = temp.new_pw;
+                        break;
+                    case 'ResetPWByID':
+                        data.answer = temp.answer;
+                        break;
+                    case 'ResetPWQAByID':
+                        data.pw = temp.pw;
+                        data.find_id = temp.find_id;
+                        break;
+                    case 'Rank_Insert':
+                        data.pw = temp.pw;
+                        data.find_id = temp.find_id;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'Rank_UpdateAll':
+                        data.pw = temp.pw;
+                        data.find_id = temp.find_id;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    case 'Rank_Delete':
+                        data.pw = temp.pw;
+                        data.find_id = temp.find_id;
+                        break;
+                    case 'UpdateLastTime':
+                        data.pw = temp.pw;
+                        
+                        break;
+                    case 'GetLastTime':
+                        data.pw = temp.pw;
+                        break;
+                    case 'Info_Update_Only':
+                    case 'GetUserByRank':
+                        data.pw = temp.pw;
+                        Object.assign(data, JSON.parse(temp.json));
+                        break;
+                    default:
+                        return;
+                }
+                $.ajax({
+                    type: 'POST',
+                    crossDomain: true,
+                    url: '../Ashx/LoginHandler.ashx',
+                    data: 'json=' + escape(JSON.stringify(data)),
+                    dataType: 'json',
+                    success: sFun
+                });
+            });
+
+            function sFun(result) {
+                $('#send').html(JSON.stringify(data));
+                $('#recv').html(JSON.stringify(result));
+            }
+
+            $('#type').change(function () {
+                $('textarea').prop('disabled', true).html('');
+                switch ($(this).val()) {
+                    case 'Info_Update':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"idebtity":"1","email":"1","QQ":"11111","phonenumber_long":"1","phonenumber_short":"1","address":"1"}')
+                        break;
+                    case 'Rank_Insert':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"name":"13354439","rank_control":"管理权限","rank_news":"管理权限","rank_drug":"管理权限","rank_equipment":"管理权限","rank_experment":"管理权限","rank_course":"管理权限","rank_class":"管理权限","rank_student":"管理权限","rank_open":"管理权限"}')
+                        break;
+                    case 'Rank_UpdateAll':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"name":"13354439","rank_control":"管理权限","rank_news":"管理权限","rank_drug":"管理权限","rank_equipment":"管理权限","rank_experment":"管理权限","rank_course":"管理权限","rank_class":"管理权限","rank_student":"管理权限","rank_open":"管理权限"}')
+                        break;
+                    case 'Info_Update_Only':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"update_name":"email","value":"2333"}')
+                        break;
+                    case 'GetUserByRank':
+                        $('textarea').eq(0).prop('disabled', false);
+                        $('textarea').eq(0).html('{"name":"rank_experment"}')
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+        });
+    </script>
+    <title>逗比咸鱼</title>
+</head>
+
+<body>
+    <div class="well well-lg">
+        <form id="form" class="center-block" style="max-width: 1200px">
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">请求类型</div>
+                        <select name="type" id="type" class="form-control">
+                            <option value="Login" selected="selected">Login</option>
+                            <option value="GetInfoByID">GetInfoByID</option>
+                            <option value="Info_Update_Only">Info_Update_Only</option>
+                            <option value="Info_Update">Info_Update</option>
+                            <option value="GetInfoAll">GetInfoAll</option>
+                            <option value="GetRankByID">GetRankByID</option>
+                            <option value="GetQA">GetQA</option>
+                            <option value="Rank_UpdateQA">Rank_UpdateQA</option>
+                            <option value="Rank_UpdatePW">Rank_UpdatePW</option>
+                            <option value="GetRankAll">GetRankAll</option>
+                            <option value="ResetPWByID">ResetPWByID</option>
+                            <option value="ResetPWQAByID">ResetPWQAByID</option>
+                            <option value="Rank_Insert">Rank_Insert</option>
+                            <option value="Rank_UpdateAll">Rank_UpdateAll</option>
+                            <option value="Rank_Delete">Rank_Delete</option>
+                            <option value="UpdateLastTime">UpdateLastTime</option>
+                            <option value="GetLastTime">GetLastTime</option>
+                            <option value="GetUserByRank">GetUserByRank</option>
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">ID</div>
+                        <input type="text" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">PW</div>
+                        <input type="text" class="form-control" name="pw">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">查询id</div>
+                        <input type="text" class="form-control" name="find_id">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">问题</div>
+                        <input type="text" class="form-control" name="question">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">答案</div>
+                        <input type="text" class="form-control" name="answer">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">旧密码</div>
+                        <input type="text" class="form-control" name="old_pw">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">新密码</div>
+                        <input type="text" class="form-control" name="new_pw">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <div class="input-group-addon">验证码</div>
+                        <input type="text" class="form-control" name="str">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="row form-horizontal form-group">
+                <label class="col-sm-2 control-label">JSON输入</label>
+                <div class="col-sm-10"><textarea name="json" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea></div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>发送格式</strong></h4>
+                    <textarea id="send" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <h4 class="text-mute"><strong>接收格式</strong></h4>
+                    <textarea id="recv" class="form-control" style="max-width: 100%; min-width: 100%" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-block btn-info">确认提交</button>
+                </div>
+            </div>
+
+            <img src="../CheckImage.aspx" />
+        </form>
+    </div>
+</body>
+
+</html>

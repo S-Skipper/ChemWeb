@@ -1,0 +1,560 @@
+#main label{
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+#main label button{
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #3597dc;
+    background-color: #3597dc;
+    height: 42px;
+    font-size: 16px;
+    width: 10%;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.5em;
+    padding-left: 0.5em;
+    min-width: 4em;
+    border-radius: 0 15px 15px 0;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#main label button:hover{
+    cursor: pointer;
+    background-color: #20aadc;
+}
+#main label input{
+    margin: 0;
+    padding: 0;
+    border-radius:15px 0 0 15px;
+    font-size: 16px;
+    width: 75%;
+    height: 40px;
+    border: 1px solid #CCC;
+    background-color: rgba(210, 210, 210, 0.1);
+    outline: 0;
+    padding: 0 10px;
+}
+#main label input:focus, #main label input:focus+button{
+    box-shadow: 0 0 2px blue;
+}
+#main table{
+    text-align: left;
+    margin: 20px auto;
+    width: 90%;
+    border-collapse: collapse;
+    -webkit-transition: width 0.3s;
+    -o-transition: width 0.3s;
+    transition: width 0.3s;
+}
+#main td, #main th{
+    border: 1px solid #EEE;
+}
+#main thead{
+    font-size: 1.2em;
+    background-color: #FAFAAF;
+}
+#main table td, #main table th{
+    padding: 5px 10px;
+}
+#main table tr td:first-child, #main table tr td:last-child,
+#main table tr th:first-child, #main table tr th:last-child{
+    width: 25%;
+}
+#main table tbody tr{
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#main table tbody tr:nth-child(2n+1){
+    background-color: #F6F5FA;
+}
+#main table tbody tr:hover{
+    cursor: pointer;
+    background-color: #EFEFF0;
+}
+#page{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 5%;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#page li{
+    text-align: center;
+    width: 5%;
+    margin: 0;
+    padding: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    border-left: 0;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+}
+#page li:hover{
+    cursor: pointer;
+    background-color: #EEE;
+}
+#page li:first-child{
+    border-left: 1px solid #CCC;
+}
+#page li.active{
+    background-color: #3597dc;
+    cursor: default;
+    color: white;
+}
+.modal{
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+.modal_container{
+    margin-top: 100px;
+    width: 800px;
+    max-height: 400px;
+    background-color: white;
+    box-shadow: 0 0 10px #333;
+}
+.modal_header{
+    position: relative;
+    height: 40px;
+    border-bottom: 1px solid #CCC;
+}
+.modal_header ul{
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+}
+.modal_header ul li{
+    padding: 0 1em;
+    cursor: pointer;
+}
+.modal_header ul li.active{
+    background-color: #3597dc;
+    color: white;
+}
+.modal_header .close{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    color: #999;
+    -webkit-transition: color 0.3s;
+    -o-transition: color 0.3s;
+    transition: color 0.3s;
+}
+.modal_header .close:hover{
+    color: #333;
+}
+.modal_main{
+    display: none;
+    padding: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 360px;
+    overflow: auto;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+}
+.modal_main.active{
+    display: flex;
+    display: -webkit-flex;
+}
+#basePane{
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+#basePane div{
+    padding: 8px 10px;
+    box-sizing: border-box;
+    flex: 0 0 50%;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+#basePane div.full{
+    flex: 0 0 100%;
+}
+#basePane div span{
+    font-weight: bold;
+    padding: 5px;
+    flex: none;
+    border: 1px solid rgb(168, 171, 171);
+}
+#basePane div input, #basePane div textarea{
+    margin: 0;
+    padding: 5px;
+    border: 1px solid rgb(168, 171, 171);
+    width: 0;
+    flex: auto;
+}
+#basePane div textarea{
+    height: 15em;
+}
+#basePane div span+input{
+    border-left: 0;
+}
+#basePane div>label{
+    text-align: left !important;
+    font-weight: bold;
+    margin: 0 !important;
+    flex: 0 0 100%;
+    -webkit-flex: 0 0 100%;
+}
+#basePane div button{
+    margin: 0;
+    outline: 0;
+    padding: 0.5em;
+    padding-left: 1em;
+    border: 1px solid #3597dc;
+    width: 100%;
+    background-color: #3597dc;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 0.2em;
+}
+#basePane div button:hover{
+    cursor: pointer;
+    background-color: #20aadc;
+}
+#recipePane{
+    height: 360px;
+}
+#recipePane section{
+    flex: 1 0 50%;
+    -webkit-flex: 1 0 50%;
+    height: 100%;
+}
+#recipeSearch{
+    border-right: 1px solid gray;
+    overflow: hidden;
+    position: relative;
+}
+#recipeSearch article{
+    height: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-transition: top 0.3s;
+    -o-transition: top 0.3s;
+    transition: top 0.3s;
+    top: 0;
+    /*top: -100%;*/
+}
+#recipeSearch article input, #recipeSearch article button{
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    border: 1px solid #756f7a;
+    box-sizing: border-box;
+    height: 30px;
+    font-size: 14px;
+}
+#recipeSearch article input{
+    border-right: 0;
+    width: 75%;
+    padding: 0 10px;
+}
+#recipeSearch article button{
+    background-color: rgb(110, 140, 138);
+    font-weight: bold;
+    color: white;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+}
+#recipeSearch article button:hover{
+    cursor: pointer;
+    background-color: rgb(88, 111, 110);
+}
+#recipeSearch article input+button{
+    width: 25%;
+}
+#recipeSearch article .btns{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 8px;
+    padding-top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+#recipeSearch article .btns button{
+    flex: 0 0 33%;
+    -webkit-flex: 0 0 33%;
+}
+#recipeSearch article ul{
+    border: 1px solid black;
+    margin-top: 5px;
+    height: 255px;
+    overflow: auto;
+}
+#recipeSearch article li{
+    background-color: #eff;
+    cursor: pointer;
+    padding: 3px;
+    padding-right: 5.5em;
+    word-break: break-all;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    position: relative;
+}
+#recipeSearch article li:nth-child(odd){
+    background-color: #eee;
+}
+#recipeSearch article li:hover{
+    background-color: #ddd;
+}
+#recipeSearch article li.active{
+    color: white;
+    background-color: #3597dc;
+}
+#recipeSearch article li i{
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    font-style: normal;
+    background-color: #786280;
+    color: white;
+    width: 2em;
+    text-align: center;
+}
+#recipeSearch article li input{
+    position: absolute;
+    right: 2em;
+    top: 3px;
+    height: 20px;
+    font-size: 14px;
+    width: 3em;
+    border: 1px solid rgb(177, 111, 122);
+    padding: 0;
+}
+#recipeInfo label{
+    font-weight: bold;
+    font-size: 16px;
+}
+#recipeInfo ul{
+    margin: 5px;
+    border: 1px solid black;
+    height: 110px;
+    overflow: auto;
+}
+#recipeInfo li{
+    background-color: #fee;
+    cursor: pointer;
+    padding: 3px;
+    padding-right: 6em;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    position: relative;
+}
+#recipeInfo li:nth-child(odd){
+    background-color: #deecce;
+}
+#recipeInfo li:hover{
+    background-color: #c1e895;
+}
+#recipeInfo li button{
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    background-color: rgb(185, 107, 51);
+    width: 3em;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+    font-weight: normal;
+}
+#recipeInfo li button.btnDelDrug, #recipeInfo li button.btnDelMix{
+    right: 3em;
+}
+#recipeInfo li button.btnDetailDrug, #recipeInfo li button.btnDetailMix{
+    background-color: rgb(53, 164, 118);
+    right: 0;
+}
+#recipeInfo li button:hover{
+    cursor: pointer;
+    background-color: rgb(149, 68, 10);
+}
+#recipeInfo button{
+    margin: 0;
+    border: 0;
+    padding: 5px;
+    outline: 0;
+    background-color: rgb(100, 246, 123);
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    cursor: poin
+}
+#recipeInfo button:hover{
+    cursor: pointer;
+    background-color: rgb(27, 228, 59);
+}
+#countPane{
+    flex-direction: column;
+    -webkit-flex-direction: column;
+}
+#calculator{
+    margin: 0 auto;
+    width: 70%;
+    height: 35px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: center;
+}
+#calculator span{
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    border: 1px solid #999;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 8px;
+    box-sizing: border-box;
+}
+#calculator input{
+    flex: 1 0 0;
+    -webkit-flex: 1 0 0;
+    border: 1px solid #999;
+    border-left: 0;
+    border-right: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+#calculator i{
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    border: 1px solid #999;
+    font-size: 16px;
+    padding: 5px 8px;
+    font-style: normal;
+    color: white;
+    background-color: #999;
+    box-sizing: border-box;
+}
+#drug_container{
+    width: 90%;
+    display: flex;
+    display: -webkit-flex;
+    margin: 10px auto;
+    border: 1px solid #9aa;
+    height: 300px;
+    overflow: auto;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: baseline;
+}
+#drug_container>.drug_item{
+    flex: 0 0 100%;
+    -webkit-flex: 0 0 100%;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    padding-left: 60px;
+    background-color: #eff;
+    color: #333;
+    font-size: 14px;
+    -webkit-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    position: relative;
+    word-break: break-all;
+}
+#drug_container>.drug_item:nth-of-type(odd){
+    background-color: #ffe;
+}
+#drug_container>.drug_item:hover{
+    background-color: #fef;
+}
+#drug_container>.drug_item>button{
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    background-color: rgb(53, 164, 118);
+    width: 3em;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+    font-weight: normal;
+    left: 0;
+}
+#drug_container>.drug_item>button:hover{
+    cursor: pointer;
+    background-color: rgb(149, 68, 10);
+}
+/* responsive */
+@media all and (max-width: 768px){
+    #main label input{
+        width: 65%;
+    }
+    #main label button{
+        padding: 0;
+        letter-spacing: 0;
+        width: 20%;
+    }
+    #main table{
+        width: 100%;
+    }
+    #page{
+        justify-content: center;
+        padding-right: 0;
+    }
+    #page li{
+        width: 11%;
+    }
+    .modal_container{
+        width: 100%;
+    }
+    #calculator{
+        width: 100%;
+    }
+}
